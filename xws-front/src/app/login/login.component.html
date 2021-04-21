@@ -1,0 +1,17 @@
+<div class="formBox">
+    <h1><b>Log in</b></h1>
+    <form [formGroup]="loginForm" autocomplete="off">
+        <hr>
+        
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+    
+        <br>
+        <button mat-raised-button [disabled]="loginForm.invalid" (click)="Login()">Log in</button>
+    </form>
+</div>
