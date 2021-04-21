@@ -1,4 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+body ,.mat-body, .mat-body-1, .mat-typography {
+    margin: 0;
+    font-size: 18px;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background: black;
+    padding: 1.5em 0;
+}
+header a {
+    color: white;
+    text-decoration: none;
+}
+.logo {
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+nav {
+    float: right;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+}
+nav ul li a {
+    padding: 1em;
+}
+nav ul li a:hover {
+    background: darken(black, 10%);
+}
+
+h1 {
+    margin-top: 2em;
+    font-size: 20px;
+}
+
+.formBox{
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    margin: 1em auto; 
+    padding:10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.08);
+}
