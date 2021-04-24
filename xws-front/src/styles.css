@@ -44,8 +44,13 @@ h1 {
 .formBox{
     align-items: center;
     text-align: center;
-    width: 40%;
+    min-width: 40%;
+    width: fit-content;
     margin: 1em auto; 
     padding:10px;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.08);
 }
+
+.mat-form-field-subscript-wrapper {
+    z-index: 100; 
+  }
