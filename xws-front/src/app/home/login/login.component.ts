@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { LoginCredentials } from '../../dto/login-credentials.model';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,18 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginComponent implements OnInit {
 
   public loginForm :FormGroup;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder,private authenticationService:AuthenticationService,private router: Router) { }
+  constructor(private fb: FormBuilder,private authenticationService:AuthService, private tokenStorage: TokenStorageService,private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required ]]
     })
+
   }
 
   //,Validators.email
@@ -31,12 +36,15 @@ export class LoginComponent implements OnInit {
     this.authenticationService.Login(credentials).subscribe(
     (data:any)=>
       {
-        localStorage.setItem('accessToken', data.accessToken);
+        this.tokenStorage.saveToken(data.accessToken);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
         alert("Uspeh");
         this.router.navigate(['/'])
       },
       err => {
-        alert(err.error);
+        this.errorMessage = "";
+        this.isLoginFailed = true;
       }  
     )
   }

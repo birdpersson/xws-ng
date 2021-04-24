@@ -8,12 +8,12 @@ import { LoginCredentials } from '../dto/login-credentials.model';
 
 
 
-export class AuthenticationService {
+export class AuthService {
 
-  private readonly _APIUrl="http://localhost:8080"
+  private readonly _APIUrl="http://localhost:8080/auth"
   constructor(private _http: HttpClient) { }
   
   Login(credentials:LoginCredentials) {
-    return this._http.post(this._APIUrl + '/auth/login', credentials);
+    return this._http.post(this._APIUrl + '/login', credentials);
   }
 }

@@ -1,6 +1,6 @@
 <div class="formBox">
     <h1><b>Log in</b></h1>
-    <form [formGroup]="loginForm" autocomplete="off">
+    <form [formGroup]="loginForm" autocomplete="off" #f="ngForm">
         <hr>
         
         <mat-form-field>
@@ -13,5 +13,10 @@
     
         <br>
         <button mat-raised-button [disabled]="loginForm.invalid" (click)="login()">Log in</button>
+
+        <mat-error *ngIf="f.submitted && isLoginFailed">
+            <br>
+            Login failed
+        </mat-error>
     </form>
 </div>

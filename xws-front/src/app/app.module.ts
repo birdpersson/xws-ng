@@ -10,10 +10,13 @@ import { LoginComponent } from './home/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './home/register/register.component';
 
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+
 
 
 
@@ -36,7 +39,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatGridListModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
