@@ -1,34 +1,63 @@
 import { Injectable } from '@angular/core';
+import jwtDecode, { JwtDecodeOptions } from 'jwt-decode';
+import { of } from 'rxjs';
 
 const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+const ROLE = 'user-role';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
 
+  isLogin = false;
+
+  roleAs: string;
   constructor() { }
 
-  signOut(): void {
-    window.sessionStorage.clear();
+  login(token) {
+    this.isLogin = true;
+    this.saveToken(token);
+    this.saveRole(token);
+    localStorage.setItem('STATE', 'true');
+    return of({ success: this.isLogin});
   }
 
+  logout() {
+    this.isLogin = false;
+    this.roleAs = '';
+    localStorage.clear();
+    localStorage.setItem('STATE', 'false');
+    return of({ success: this.isLogin});
+  }
+
+  isLoggedIn() {
+    const loggedIn = localStorage.getItem('STATE');
+    if (loggedIn == 'true')
+      this.isLogin = true;
+    else
+      this.isLogin = false;
+    return this.isLogin;
+  }
+
+
   public saveToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return localStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  public saveRole(token): void {
+    localStorage.removeItem(ROLE);
+    var decoded_token=jwtDecode(token);
+    this.roleAs =decoded_token['role'];
+    localStorage.setItem(ROLE, this.roleAs );
   }
 
-  public getUser(): any {
-    return JSON.parse(sessionStorage.getItem(USER_KEY));
+  public getRole(): any {
+    return localStorage.getItem(ROLE);
   }
 }

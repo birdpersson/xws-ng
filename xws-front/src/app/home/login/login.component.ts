@@ -5,6 +5,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { LoginCredentials } from '../../dto/login-credentials.model';
 import { AuthService } from '../../services/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,18 +14,17 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
   public loginForm :FormGroup;
-  isLoggedIn = false;
-  isLoginFailed = false;
   errorMessage = '';
+  isLoginFailed=false;
 
-  constructor(private fb: FormBuilder,private authenticationService:AuthService, private tokenStorage: TokenStorageService,private router: Router) { }
+  constructor(private fb: FormBuilder,private authenticationService:AuthService, private tokenStorageService: TokenStorageService,private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required ]]
     })
-
+    this.isLoginFailed=false;
   }
 
   //,Validators.email
@@ -36,17 +36,31 @@ export class LoginComponent implements OnInit {
     this.authenticationService.Login(credentials).subscribe(
     (data:any)=>
       {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        alert("Uspeh");
-        this.router.navigate(['/'])
+        this.tokenStorageService.login(data.accessToken)
+            .subscribe(res => {
+                    if (res.success) 
+                    {
+                        alert("Uspeh");
+                       // this.goToDashBoard();
+                      }
+              });
       },
       err => {
         this.errorMessage = "";
-        this.isLoginFailed = true;
+        this.isLoginFailed=true;
       }  
     )
+    
   }
 
+  goToDashBoard(){
+    let role = this.tokenStorageService.getRole();
+    if (role === 'ADMIN')
+      this.router.navigate(['admin']);
+    if (role === 'USER')
+      this.router.navigate(['user']);
+
+  } 
+
 }
+
