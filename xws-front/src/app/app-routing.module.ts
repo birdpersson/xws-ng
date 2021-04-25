@@ -5,6 +5,10 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './home/register/register.component';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
+import { AuthGuard } from './_helpers/auth.guard';
+
 
 
 const routes: Routes = [
@@ -18,7 +22,15 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent }           ]
   },
-  {  path: 'reset-password', component: ResetPasswordComponent }
+  {  path: 'reset-password', component: ResetPasswordComponent },
+  {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
+  data: {
+    allowedRoles: ['ADMIN']
+  } },
+  {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
+  data: {
+    allowedRoles: ['USER']
+  }}
 ];
 
 @NgModule({

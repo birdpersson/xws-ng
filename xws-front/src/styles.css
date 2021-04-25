@@ -51,6 +51,14 @@ h1 {
     box-shadow:0 0 15px 4px rgba(0,0,0,0.08);
 }
 
+.welcome{
+    align-items: center;
+    text-align: center;
+    min-width: 40%;
+    width: fit-content;
+    margin: 1em auto; 
+    padding:10px;
+}
 .mat-form-field-subscript-wrapper {
     z-index: 100; 
   }

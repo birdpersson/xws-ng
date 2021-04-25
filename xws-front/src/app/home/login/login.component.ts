@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TokenStorageService } from '../../services/token-storage.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { LoginCredentials } from '../../dto/login-credentials.model';
 import { AuthService } from '../../services/auth.service';
 
@@ -40,8 +40,7 @@ export class LoginComponent implements OnInit {
             .subscribe(res => {
                     if (res.success) 
                     {
-                        alert("Uspeh");
-                       // this.goToDashBoard();
+                        this.goToDashBoard();
                       }
               });
       },
