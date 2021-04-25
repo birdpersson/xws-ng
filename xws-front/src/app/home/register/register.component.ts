@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/dto/user.model';
+import { UserService } from 'src/app/services/user.service';
 import { MustMatch ,PasswordStrengthValidator } from '../password.validators';
 
 @Component({
@@ -11,8 +13,9 @@ import { MustMatch ,PasswordStrengthValidator } from '../password.validators';
 export class RegisterComponent implements OnInit {
 
   public registerForm :FormGroup;
+  user:User=new User;
 
-  constructor(private fb: FormBuilder,private router: Router) { }
+  constructor(private fb: FormBuilder,private router: Router,private userService:UserService) { }
 
   ngOnInit(): void {
     this.registerForm=this.fb.group({
@@ -25,8 +28,22 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+
   register(){
-    this.router.navigate(['/'])
+    this.user.username=this.registerForm.get('email').value;
+    this.user.password=this.registerForm.get('password').value;
+    this.userService.Register(this.user).subscribe(res => {
+        alert("thank you for registering. \n"+
+        "In order to complete the registration, it is necessary to verify your account \n"+
+        "A verification email has been sent to your email address  ");
+        this.router.navigate(['/']);
+      },
+      err=>{
+        alert("registration failed \n"+err.error.error);
+        
+      }
+    )
+   
   }
 
 }
