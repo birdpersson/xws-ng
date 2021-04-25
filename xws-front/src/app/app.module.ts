@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 
 
 
@@ -28,6 +29,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

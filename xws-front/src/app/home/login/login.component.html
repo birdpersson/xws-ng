@@ -12,11 +12,19 @@
         </mat-form-field>
     
         <br>
+        <div class="link">
+            Forgot Password? Click <a href="#" routerLink="/forgot-password">here</a>
+         </div>
+        <br>
         <button mat-raised-button [disabled]="loginForm.invalid" (click)="login()">Log in</button>
-
+        <br>
+        
         <mat-error *ngIf="f.submitted && isLoginFailed">
             <br>
             Login failed
         </mat-error>
     </form>
 </div>
+<div class="link">
+    New user? <a href="#" routerLink="/register">Register</a>
+ </div>
