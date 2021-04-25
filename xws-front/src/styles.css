@@ -54,3 +54,13 @@ h1 {
 .mat-form-field-subscript-wrapper {
     z-index: 100; 
   }
+
+.link a{
+    color: rgb(92, 153, 172);
+    
+}
+.link{
+    font-size: 13px;
+    color: grey;
+    text-align: center;
+}

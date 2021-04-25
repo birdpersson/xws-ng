@@ -22,8 +22,7 @@ export class RegisterComponent implements OnInit {
     },
     {
       validator: MustMatch("password", "confirmPassword")
-    }
-    )
+    })
   }
 
   register(){
