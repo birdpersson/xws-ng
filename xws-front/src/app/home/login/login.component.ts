@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { LoginCredentials } from '../../dto/login-credentials.model';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,14 +14,17 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginComponent implements OnInit {
 
   public loginForm :FormGroup;
+  errorMessage = '';
+  isLoginFailed=false;
 
-  constructor(private fb: FormBuilder,private authenticationService:AuthenticationService,private router: Router) { }
+  constructor(private fb: FormBuilder,private authenticationService:AuthService, private tokenStorageService: TokenStorageService,private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required ]]
     })
+    this.isLoginFailed=false;
   }
 
   //,Validators.email
@@ -31,14 +36,31 @@ export class LoginComponent implements OnInit {
     this.authenticationService.Login(credentials).subscribe(
     (data:any)=>
       {
-        localStorage.setItem('accessToken', data.accessToken);
-        alert("Uspeh");
-        this.router.navigate(['/'])
+        this.tokenStorageService.login(data.accessToken)
+            .subscribe(res => {
+                    if (res.success) 
+                    {
+                        alert("Uspeh");
+                       // this.goToDashBoard();
+                      }
+              });
       },
       err => {
-        alert(err.error);
+        this.errorMessage = "";
+        this.isLoginFailed=true;
       }  
     )
+    
   }
 
+  goToDashBoard(){
+    let role = this.tokenStorageService.getRole();
+    if (role === 'ADMIN')
+      this.router.navigate(['admin']);
+    if (role === 'USER')
+      this.router.navigate(['user']);
+
+  } 
+
 }
+
