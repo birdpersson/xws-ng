@@ -33,13 +33,13 @@ export class RegisterComponent implements OnInit {
     this.user.username=this.registerForm.get('email').value;
     this.user.password=this.registerForm.get('password').value;
     this.userService.Register(this.user).subscribe(res => {
-        alert("thank you for registering. \n"+
+        alert("Thank you for registering. \n"+
         "In order to complete the registration, it is necessary to verify your account \n"+
         "A verification email has been sent to your email address  ");
         this.router.navigate(['/']);
       },
       err=>{
-        alert("registration failed \n"+err.error.error);
+        alert("Registration failed \n"+err.error.error);
         
       }
     )

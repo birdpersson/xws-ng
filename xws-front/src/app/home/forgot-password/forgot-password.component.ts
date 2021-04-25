@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private router: Router) { }
 
   public myForm :FormGroup;
 
@@ -18,6 +19,9 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  sendResetEmail(){}
+  sendResetEmail(){
+    alert("Link for password reset was sent to "+this.myForm.get('email').value);
+    this.router.navigate(['login']);
+  }
 
 }
