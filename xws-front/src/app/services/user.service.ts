@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../dto/user.model';
@@ -23,8 +23,8 @@ export class UserService {
 
   }
   
-  resetPassword(user:User):Observable<any>{
-    return this._http.post(this._APIUrl+'/signup',user);
+  resetPassword(token:string,password:string):Observable<any>{
+    return this._http.post(this._APIUrl+'/reset-password',{token:token,password:password});
 
   }
   

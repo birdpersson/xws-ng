@@ -5,10 +5,20 @@
         
         <mat-form-field>
             <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+                Email not valid!
+            </mat-error >
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+                Email is required!
+
+            </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field>
             <input type="password" matInput placeholder="Password" formControlName="password">
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                Password is required!
+            </mat-error>
         </mat-form-field>
     
         <br>
@@ -21,7 +31,6 @@
         
         <mat-error *ngIf="f.submitted && isLoginFailed">
             <br>
-            Login failed 
             Email and password don't match
         </mat-error>
     </form>
