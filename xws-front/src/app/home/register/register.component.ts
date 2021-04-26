@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/']);
       },
       err=>{
-        alert("Registration failed \n"+err.error.error);
+        alert("Registration failed ");
         
       }
     )

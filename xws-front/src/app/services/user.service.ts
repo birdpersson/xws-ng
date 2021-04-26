@@ -17,5 +17,15 @@ export class UserService {
     return this._http.post(this._APIUrl+'/signup',user);
 
   }
+
+  frogotPassword(value:string):Observable<any>{
+    return this._http.post(this._APIUrl+'/forgot-password',{username:value});
+
+  }
+  
+  resetPassword(user:User):Observable<any>{
+    return this._http.post(this._APIUrl+'/signup',user);
+
+  }
   
 }
