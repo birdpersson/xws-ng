@@ -1,3 +1,5 @@
+import { UserComponent } from './user/user.component';
+import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -32,7 +34,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-  ],
+    AdminComponent,
+    UserComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
