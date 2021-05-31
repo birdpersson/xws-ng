@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
 
 
 
@@ -32,6 +33,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    ChangeInfoComponent,
   ],
   imports: [
     BrowserModule,
