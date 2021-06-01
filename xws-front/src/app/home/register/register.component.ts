@@ -14,12 +14,20 @@ export class RegisterComponent implements OnInit {
 
   public registerForm :FormGroup;
   user:User=new User;
+  maxDate: Date;
 
-  constructor(private fb: FormBuilder,private router: Router,private userService:UserService) { }
+  constructor(private fb: FormBuilder,private router: Router,private userService:UserService) {
+    const currentYear = new Date().getFullYear(); 
+    this.maxDate=new Date(currentYear-10,12,31);
+  }
 
   ngOnInit(): void {
     this.registerForm=this.fb.group({
       email: ['', [Validators.email,Validators.required]],
+      name:['',[Validators.required]],
+      phoneNumber: [''],
+      website:[''],
+      birthday:[],
       password: ['', [Validators.required,Validators.minLength(10),PasswordStrengthValidator()]],
       confirmPassword: ['', Validators.required]
     },
@@ -27,7 +35,6 @@ export class RegisterComponent implements OnInit {
       validator: MustMatch("password", "confirmPassword")
     })
   }
-
 
   register(){
     this.user.username=this.registerForm.get('email').value;
