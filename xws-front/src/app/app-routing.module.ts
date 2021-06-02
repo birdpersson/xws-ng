@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
+import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   {  path: 'change-info', component: ChangeInfoComponent },
+  {  path: 'profile-view',  component: ProfileViewComponent },
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']

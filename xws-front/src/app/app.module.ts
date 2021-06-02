@@ -16,10 +16,14 @@ import { AuthGuard } from './_helpers/auth.guard'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider'; 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
+import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
+
 
 
 
@@ -34,6 +38,7 @@ import { ChangeInfoComponent } from './change-info/change-info/change-info.compo
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ChangeInfoComponent,
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,8 @@ import { ChangeInfoComponent } from './change-info/change-info/change-info.compo
     MatButtonModule,
     MatGridListModule,
     HttpClientModule,
+    MatCardModule,
+    MatDividerModule,
   ],
   providers: [
     AuthGuard,
