@@ -18,9 +18,11 @@ import { AuthGuard } from './_helpers/auth.guard'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -35,7 +37,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ForgotPasswordComponent,
     ResetPasswordComponent,
     AdminComponent,
-    UserComponent  ],
+    UserComponent,
+    SearchComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -46,6 +49,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
+    MatTabsModule,
     HttpClientModule,
   ],
   providers: [

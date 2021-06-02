@@ -8,6 +8,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -20,13 +21,17 @@ const routes: Routes = [
                 pathMatch:"full"},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent }           ]
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path:'search',component:SearchComponent }          ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']
-  }
+  },
+  children:[
+    { path:'search',component:SearchComponent }
+  ]
  },
   {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
   data: {
