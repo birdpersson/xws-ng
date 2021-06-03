@@ -21,11 +21,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider'; 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
 import { PostComponent } from './post/post/post.component';
+import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 
 
 
@@ -43,6 +46,7 @@ import { PostComponent } from './post/post/post.component';
     ChangeInfoComponent,
     PostComponent,
     
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { PostComponent } from './post/post/post.component';
     MatChipsModule,
     MatDialogModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatCardModule,
+    MatDividerModule,
   ],
   providers: [
     AuthGuard,
