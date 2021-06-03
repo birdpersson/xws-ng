@@ -1,3 +1,5 @@
+import { UserComponent } from './user/user.component';
+import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,12 +26,16 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'; 
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+
+
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
 import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
-
 
 
 
@@ -45,9 +51,11 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
     ResetPasswordComponent,
     ChangeInfoComponent,
     PostComponent,
-    
+    AdminComponent,
+    UserComponent,
     ProfileViewComponent,
   ],
+     
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -56,7 +64,10 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
     MatButtonModule,
+    MatToolbarModule,    
+    MatNativeDateModule,
     MatGridListModule,
     HttpClientModule,
     MatSelectModule,
@@ -66,6 +77,7 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
     MatCheckboxModule,
     MatCardModule,
     MatDividerModule,
+    
   ],
   providers: [
     AuthGuard,
