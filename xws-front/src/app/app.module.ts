@@ -25,6 +25,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'; 
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -36,9 +37,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
 import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
-
-
-
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -53,9 +52,9 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
     PostComponent,
     AdminComponent,
     UserComponent,
+    SearchComponent,
     ProfileViewComponent,
   ],
-     
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -69,6 +68,7 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
     MatToolbarModule,    
     MatNativeDateModule,
     MatGridListModule,
+    MatTabsModule,
     HttpClientModule,
     MatSelectModule,
     MatChipsModule,

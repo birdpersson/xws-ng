@@ -11,6 +11,7 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
 import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes = [
                 pathMatch:"full"},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent }           ]
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path:'search',component:SearchComponent }          ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   {  path: 'change-info', component: ChangeInfoComponent },
@@ -32,7 +34,10 @@ const routes: Routes = [
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']
-  }
+  },
+  children:[
+    { path:'search',component:SearchComponent }
+  ]
  },
   {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
   data: {

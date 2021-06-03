@@ -1,0 +1,20 @@
+<div class="main">
+    
+
+<form [formGroup]="searchForm" autocomplete="off">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search" #search formControlName="search" (keyup.enter)="checkSelectedTab()">
+    </mat-form-field>
+    <br>
+</form>
+
+
+<mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)" width="90%">
+    <mat-tab label="User">Content 1</mat-tab>
+        
+    <mat-tab label="Tag">Content 2</mat-tab>
+
+    <mat-tab label="Location">Content 2</mat-tab>
+  </mat-tab-group>
+
+</div>
