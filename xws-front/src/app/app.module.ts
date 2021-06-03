@@ -12,14 +12,21 @@ import { RegisterComponent } from './home/register/register.component';
 
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthGuard } from './_helpers/auth.guard'
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
+import { PostComponent } from './post/post/post.component';
+
 
 
 
@@ -34,6 +41,8 @@ import { ChangeInfoComponent } from './change-info/change-info/change-info.compo
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ChangeInfoComponent,
+    PostComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -46,6 +55,11 @@ import { ChangeInfoComponent } from './change-info/change-info/change-info.compo
     MatButtonModule,
     MatGridListModule,
     HttpClientModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatListModule,
+    MatCheckboxModule
   ],
   providers: [
     AuthGuard,

@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { ChangeInfoComponent } from './change-info/change-info/change-info.component';
+import { PostComponent } from './post/post/post.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   {  path: 'change-info', component: ChangeInfoComponent },
+  {  path: 'post', component: PostComponent },
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']

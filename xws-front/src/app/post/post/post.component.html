@@ -1,0 +1,76 @@
+
+  <div class="formBox">
+    <h1><b>POST</b></h1>
+    <form [formGroup]="postForm" autocomplete="off" #f="ngForm" style="text-align: left;">
+        <hr>
+        
+        <mat-form-field appearance="fill" class="fix-margins">
+            <mat-label>Post type</mat-label>
+            <select required matNativeControl name="postType" formControlName="postType">
+                <option value="post">Post</option>
+                <option value="story">Story</option>
+            </select>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <mat-form-field appearance="fill" >
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Location" name="location" formControlName="location">
+            
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" >
+            <mat-label>Description</mat-label>
+            <textarea rows="4" cols="6" matInput name="desc" formControlName="desc"></textarea>
+            
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        
+        <input type="file" accept="image/*" multiple />
+        <br>
+        <br>
+        <mat-form-field class="example-chip-list">
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(fruit)">
+                {{fruit.name}}
+                <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+              </mat-chip>
+              <input placeholder="New tag..."
+              name="tags" formControlName="tags"
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
+
+        <br>
+        <mat-checkbox *ngIf="postForm.get('postType').value=='story'" class="example-margin" name="highlight" formControlName="highlight">Story highlight</mat-checkbox>
+        <br>
+        <button *ngIf="postForm.get('postType').value=='story'" mat-raised-button color="primary" (click)="show()" style="text-align: center;">Close friends</button>
+        <div *ngIf="showFriends">
+          
+            <mat-selection-list #list class="custom-scroll-bar" name="friendList" formControlName="friendList"> 
+                <mat-list-option *ngFor="let friend of friends" [value]="friend">
+                  {{friend}}
+                </mat-list-option>
+            </mat-selection-list>
+            
+      </div>
+        
+        
+        <br>
+        <br>
+
+        <button [disabled]="postForm.invalid" mat-raised-button color="primary" (click)="uploadFiles()" style="text-align: center;">Upload</button>
+
+        
+        
+    </form>
+</div>
+  
+  
+  
