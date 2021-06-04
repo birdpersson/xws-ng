@@ -12,6 +12,7 @@ import { ChangeInfoComponent } from './change-info/change-info/change-info.compo
 import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 import { SearchComponent } from './search/search.component';
+import { FeedComponent } from './home/feed/feed/feed.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path:'search',component:SearchComponent }          ]
+      { path:'search',component:SearchComponent },
+      { path:'feed',component:FeedComponent }            ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   {  path: 'change-info', component: ChangeInfoComponent },

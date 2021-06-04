@@ -26,6 +26,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -38,6 +39,7 @@ import { ChangeInfoComponent } from './change-info/change-info/change-info.compo
 import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 import { SearchComponent } from './search/search.component';
+import { FeedComponent } from './home/feed/feed/feed.component';
 
 
 @NgModule({
@@ -54,6 +56,7 @@ import { SearchComponent } from './search/search.component';
     UserComponent,
     SearchComponent,
     ProfileViewComponent,
+    FeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,7 @@ import { SearchComponent } from './search/search.component';
     MatCheckboxModule,
     MatCardModule,
     MatDividerModule,
-    
+    MatIconModule
   ],
   providers: [
     AuthGuard,
