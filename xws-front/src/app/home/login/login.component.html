@@ -5,9 +5,11 @@
         
         <mat-form-field>
             <input matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+           <!--
+               <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
                 Email not valid!
             </mat-error >
+           --> 
             <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
                 Email is required!
 
