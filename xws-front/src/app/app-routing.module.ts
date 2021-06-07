@@ -27,11 +27,13 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path:'search',component:SearchComponent },
+      {  path: 'change-info', component: ChangeInfoComponent },
+      {  path: 'post', component: PostComponent },
       { path:'feed',component:FeedComponent }            ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
-  {  path: 'change-info', component: ChangeInfoComponent },
-  {  path: 'post', component: PostComponent },
+  
+  
   {  path: 'profile-view',  component: ProfileViewComponent },
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {

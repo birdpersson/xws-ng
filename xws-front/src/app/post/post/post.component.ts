@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   postForm: FormGroup;
   selectedOption: string;
   visible = true;
+  clicked = false;
   selectable = true;
   removable = true;
   friends: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'adadda', 'asdadad', 'asdadwq', 'Moccasins', 'Moccasins', 'Moccasins', 'Moccasins', 'Moccasins', 'Moccasins'];
@@ -33,6 +34,9 @@ export class PostComponent implements OnInit {
         postType: [''],
         location: [''],
         desc: [''],
+        fileForm: this.fb.group({
+          file: []
+        }),
         tags: [this.fruits],
         highlight: [],
         friendList: []
@@ -79,7 +83,9 @@ export class PostComponent implements OnInit {
     this.showFriends = !this.showFriends;
   }
   
-  
+  uploadClicked(){
+    this.clicked = true;
+  }
 
   
 }
