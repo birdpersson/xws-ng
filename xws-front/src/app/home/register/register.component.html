@@ -12,16 +12,40 @@
         <mat-form-field>
             <input matInput placeholder="Phone number" formControlName="phoneNumber">
         </mat-form-field>
+        
         <mat-form-field>
             <input matInput placeholder="Website" formControlName="website">
         </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput placeholder="Bio" formControlName="bio"></textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+        <mat-select placeholder="Gender"  formControlName="gender">
+            <mat-option value="female" >
+                Female
+            </mat-option>
+            <mat-option value="male" >
+                Male
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
        
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Birthday</mat-label>
-            <input matInput formControlName="birthday" [max]="maxDate" [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Birthday</mat-label>
+        <input matInput formControlName="birthday" [max]="maxDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                Username is required!
+            </mat-error>
+        </mat-form-field>
+        <br>
         <mat-form-field>
             <input matInput placeholder="Email" formControlName="email">
             <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
@@ -63,4 +87,3 @@
         
     </form>
 </div>
-
