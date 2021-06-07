@@ -1,7 +1,7 @@
 import { HttpClient  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../dto/user.model';
+import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,11 @@ import { User } from '../dto/user.model';
 
 export class UserService {
 
-  private readonly _APIUrl="http://localhost:8080/auth"
+  private readonly _APIUrl="http://localhost:8080/"
   constructor(private _http: HttpClient) { }
 
-  Register(user:User):Observable<any>{
-    return this._http.post(this._APIUrl+'/signup',user);
+  registration(user:UserRegistrationDTO):Observable<any>{
+    return this._http.post(this._APIUrl+'user/signup',user);
 
   }
 
