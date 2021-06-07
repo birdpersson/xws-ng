@@ -18,13 +18,13 @@
         
     <mat-tab label="Tag">
         <ul class="search-res" *ngFor="let tag of hashtags">
-            <li><a href="#">{{tag}}</a></li>
+            <li><a [routerLink]="['tags',tag]">{{tag}}</a></li>
         </ul>
     </mat-tab>
 
     <mat-tab label="Location">
         <ul class="search-res" *ngFor="let location of locations">
-            <li><a href="#">{{location}}</a></li>
+            <li><a [routerLink]="['locations',location]">{{location}}</a></li>
         </ul>
     </mat-tab>
         
