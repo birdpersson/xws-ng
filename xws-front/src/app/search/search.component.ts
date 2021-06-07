@@ -1,9 +1,8 @@
-import { User } from './../dto/user.model';
 import { SearchService } from './../services/search.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { templateJitUrl } from '@angular/compiler';
+import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +14,7 @@ export class SearchComponent implements OnInit {
   constructor(private fb: FormBuilder,private searchService:SearchService) { }
 
   selectedIndex:number;
-  users:User[]=[];
+  users:UserRegistrationDTO[]=[];
   locations:String[]=[];
   hashtags:String[]=[];
 
