@@ -28,6 +28,7 @@ const routes: Routes = [
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path:'search',component:SearchComponent },
       { path: 'profile-view/:username',  component: ProfileViewComponent },
+      { path: 'post', component: PostComponent },
       { path:'feed',component:FeedComponent }            ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },

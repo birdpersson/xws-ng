@@ -28,4 +28,9 @@ export class PostService {
   createPost(post: Post){
     return this.http.post(this.postUrl + "/createPost", post, {responseType: "json"})
   }
+
+  getAllPosts(username:string):Observable<any>{
+    return this.http.get(this.postUrl + "/" + username);
+  }
+
 }

@@ -18,24 +18,26 @@
         <div class= "center"><b>This profile is private</b></div>
         <div class= "center">Follow to see their photos and videos.</div>
 
-        <mat-card class="card1">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Ime profila</mat-card-title>
-              </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-              <mat-card-content>
-                <p>
-                  Opis slike
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-raised-button color="primary">Like</button>
-                <button mat-raised-button>Comment</button>
-              </mat-card-actions>
-              <mat-divider></mat-divider>
-              <br>
-              <div>datum</div>
-        </mat-card>
+        <div *ngFor="let posts of post">
+          <mat-card class="card1">
+              <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{user.username}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                  <p>
+                    {{post.caption}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-raised-button color="primary">Like</button>
+                  <button mat-raised-button>Comment</button>
+                </mat-card-actions>
+                <mat-divider></mat-divider>
+                <br>
+                <div>datum</div>
+          </mat-card>
+      </div>
     </mat-card>
 </div>    
