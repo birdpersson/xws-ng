@@ -2,12 +2,12 @@
     <mat-card class="card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Ime profila</mat-card-title> 
+            <mat-card-title>{{user.username}}</mat-card-title> 
             <button mat-raised-button class="button1" color="primary">Follow</button>
         <!--<button mat-raised-button disabled>Following</button>
             <button mat-raised-button disabled>Requested</button> -->
         </mat-card-header>
-        <div class= "center">Opis profila</div>
+        <div class= "center">{{user.bio}}</div>
         <br>
         <div>
             <button mat-raised-button class= "center" color="primary">Add picture</button>
