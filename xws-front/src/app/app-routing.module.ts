@@ -33,6 +33,7 @@ const routes: Routes = [
   {  path: 'change-info', component: ChangeInfoComponent },
   {  path: 'post', component: PostComponent },
   {  path: 'profile-view',  component: ProfileViewComponent },
+
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']
@@ -44,7 +45,11 @@ const routes: Routes = [
   {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
   data: {
     allowedRoles: ['USER']
-  }}
+  },
+  children:[
+    { path:'search',component:SearchComponent }
+  ]
+}
 ];
 
 @NgModule({
