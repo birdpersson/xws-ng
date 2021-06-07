@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {COMMA, ENTER, I, SPACE} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-export class Fruit {
-  name: string;
-}
+import { Observable } from 'rxjs';
+import { PostService } from 'src/app/services/post.service';
+import { Post } from 'src/app/dto/post.model';
 
 
 @Component({
@@ -15,71 +15,141 @@ export class Fruit {
 })
 export class PostComponent implements OnInit {
 
+  i: number = 0;
   postForm: FormGroup;
   selectedOption: string;
   visible = true;
+  post: Post;
+  postType: string;
+  caption: string;
+  isHighlighted: boolean = false;
+  location: string;
+  clicked = false;
   selectable = true;
   removable = true;
-  friends: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers', 'adadda', 'asdadad', 'asdadwq', 'Moccasins', 'Moccasins', 'Moccasins', 'Moccasins', 'Moccasins', 'Moccasins'];
+  friends: any[] = [];
   closeFriends: any[] = Array();
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA, SPACE] as const;
-  fruits: Fruit[] = [];
+  tags: Array<string> = new Array();
+  tagSet: Set<string>;
   showFriends: boolean = false;
-  constructor(private fb: FormBuilder) { }
+  selectedFiles: FileList;
+  fileInfos: string[] = [];
+  constructor(private fb: FormBuilder, private postService:PostService) { }
 
   ngOnInit(): void {
+    this.getFriends();
       this.postForm = this.fb.group({
         postType: [''],
         location: [''],
         desc: [''],
-        tags: [this.fruits],
-        highlight: [],
+        fileForm: this.fb.group({
+          file: []
+        }),
+        tags: [this.tags],
+        highlight: [false],
         friendList: []
 
       });
   }
 
-  uploadFiles(){}
+  
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.fruits.push({name: value});
+      this.tags.push(value);
     }
 
     // Clear the input value
     event.input.value = '';
-    for(var f of this.fruits){
-      console.log(f.name);
+    for(var f of this.tags){
+      console.log(f);
     }
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(s: string): void {
+    const index = this.tags.indexOf(s);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.tags.splice(index, 1);
     }
   }
 
-  ok(list){
-    for(let l of list){
-      this.closeFriends.push(l.value);
-      
-    }
-    
-    //return this.closeFriends;
-    console.log(this.closeFriends);
-  }
 
   show(){
     this.showFriends = !this.showFriends;
   }
   
-  
+  uploadClicked(){
+    this.clicked = true;
+  }
 
+  selectFiles(event) {
+    
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadFiles(){
+    const formData = new FormData();
+
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      this.upload(this.selectedFiles[i]);
+    }
+
+  }
+
+  upload(file){
+    //this.uploadClicked();
+    
+    this.postService.upload(file).subscribe(
+      event => {
+        
+        this.fileInfos[this.i] = event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');
+        console.log(this.fileInfos[this.i]);
+        this.i++;
+        
+      }, 
+      err => {
+        
+      });
+    
+  }
+
+  getFriends(){
+    this.postService.getFriends().subscribe(
+      res=> {
+        this.friends = res;
+      }
+    )
+  }
+
+  checkValue(){
+    if(this.isHighlighted){
+
+    }
+  }
+
+  createPost(){
+    console.log(this.tags);
+    
+    this.closeFriends = this.postForm.get('friendList').value;
+    this.isHighlighted = this.postForm.value.highlight;
+    console.log(this.isHighlighted);
+    console.log(this.closeFriends);
+    this.caption = this.postForm.value.desc;
+    this.location = this.postForm.value.location;
+    this.isHighlighted = this.postForm.value.highlight;
+    this.postType = this.postForm.value.postType;
+    this.post = new Post(this.caption,this.location,this.postType,this.isHighlighted,this.tags, this.fileInfos, this.closeFriends);
+    this.postService.createPost(this.post).subscribe(
+      res=> {
+          console.log(res);
+      }
+    )
+  }
   
 }

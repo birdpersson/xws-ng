@@ -26,17 +26,21 @@
         </mat-form-field>
         &nbsp;&nbsp;&nbsp;&nbsp;
 
-        
-        <input type="file" accept="image/*" multiple />
+        <div formGroupName="fileForm">
+        <input type="file" accept="image/*" multiple formControlName="file" (change)="selectFiles($event)" />
+        <br>
+        <br>
+        <button mat-raised-button (click)="uploadFiles()">Upload</button>
+        </div>
         <br>
         <br>
         <mat-form-field class="example-chip-list">
             <mat-label>Tags</mat-label>
             <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                       [removable]="removable" (removed)="remove(fruit)">
-                {{fruit.name}}
-                <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+              <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">close</mat-icon>
               </mat-chip>
               <input placeholder="New tag..."
               name="tags" formControlName="tags"
@@ -48,9 +52,9 @@
           </mat-form-field>
 
         <br>
-        <mat-checkbox *ngIf="postForm.get('postType').value=='story'" class="example-margin" name="highlight" formControlName="highlight">Story highlight</mat-checkbox>
+        <mat-checkbox *ngIf="postForm.get('postType').value=='story'" class="example-margin"  name="highlight" formControlName="highlight">Story highlight</mat-checkbox>
         <br>
-        <button *ngIf="postForm.get('postType').value=='story'" mat-raised-button color="primary" (click)="show()" style="text-align: center;">Close friends</button>
+        <button *ngIf="postForm.get('postType').value=='story'" mat-raised-button  (click)="show()" style="text-align: center;">Close friends</button>
         <div *ngIf="showFriends">
           
             <mat-selection-list #list class="custom-scroll-bar" name="friendList" formControlName="friendList"> 
@@ -65,7 +69,7 @@
         <br>
         <br>
 
-        <button [disabled]="postForm.invalid" mat-raised-button color="primary" (click)="uploadFiles()" style="text-align: center;">Upload</button>
+        <button [disabled]="postForm.invalid " mat-raised-button color="primary" (click)="createPost()" style="text-align: center;">Post</button>
 
         
         

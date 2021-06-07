@@ -1,3 +1,7 @@
 .fields{
     width: auto;
 }
+
+mat-form-field{
+    min-width: 50%;
+}
