@@ -1,3 +1,4 @@
+import { CollectionsComponent } from './collections/collections.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './home/login/login.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path:'search',component:SearchComponent },
-      { path:'feed',component:FeedComponent }            ]
+      { path:'feed',component:FeedComponent }       ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   {  path: 'change-info', component: ChangeInfoComponent },
@@ -39,15 +40,18 @@ const routes: Routes = [
     allowedRoles: ['ADMIN']
   },
   children:[
-    { path:'search',component:SearchComponent }
+    { path:'search',component:SearchComponent },
+    { path:'my-collections',component:CollectionsComponent } 
   ]
  },
+ 
   {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
   data: {
     allowedRoles: ['USER']
   },
   children:[
-    { path:'search',component:SearchComponent }
+    { path:'search',component:SearchComponent },
+    { path:'my-collections',component:CollectionsComponent } 
   ]
 }
 ];
