@@ -41,6 +41,7 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
 import { CollectionsComponent } from './collections/collections.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { CollectionsComponent } from './collections/collections.component';
     ProfileViewComponent,
     FeedComponent,
     CollectionsComponent,
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule,
