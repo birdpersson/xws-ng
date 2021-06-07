@@ -1,3 +1,4 @@
+import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -43,6 +44,7 @@ const routes: Routes = [
   
   children:[
     { path:'search',component:SearchComponent },
+    { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent}
   ]
  },
@@ -55,6 +57,7 @@ const routes: Routes = [
   },
   children:[
     { path:'search',component:SearchComponent },
+    { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
   ]
 }
