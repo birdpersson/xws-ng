@@ -7,21 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class SearchService {
 
-  private readonly _APIUrl="http://localhost:8080"
+  private readonly _APIUrl="http://localhost:8080/api/"
   constructor(private _http: HttpClient) { }
 
   searchUser(query:string):Observable<any>{
-    return this._http.get(this._APIUrl+'/user/search/'+query);
+    return this._http.get(this._APIUrl+'/user/user/search/'+query);
 
   }
 
   searchLocation(query:string):Observable<any>{
-    return this._http.get(this._APIUrl+'/post/search/location/'+query);
+    return this._http.get(this._APIUrl+'/post/post/search/location/'+query);
 
   }
 
   searchHashtags(query:string):Observable<any>{
-    return this._http.get(this._APIUrl+'/post/search/hashtags/'+query);
+    return this._http.get(this._APIUrl+'/post/post/search/hashtags/'+query);
 
   }
 }
