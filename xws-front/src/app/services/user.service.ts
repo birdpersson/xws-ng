@@ -10,7 +10,7 @@ import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
 
 export class UserService {
 
-  private readonly _APIUrl="http://localhost:8080/"
+  private readonly _APIUrl="http://localhost:8080/api/user/"
   constructor(private _http: HttpClient) { }
 
   registration(user:UserRegistrationDTO):Observable<any>{
