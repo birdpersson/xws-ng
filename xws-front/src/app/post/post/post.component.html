@@ -69,7 +69,7 @@
         <br>
         <br>
 
-        <button [disabled]="postForm.invalid " mat-raised-button color="primary" (click)="createPost()" style="text-align: center;">Post</button>
+        <button [disabled]="postForm.invalid || !clicked" mat-raised-button color="primary" (click)="createPost()" style="text-align: center;">Post</button>
 
         
         

@@ -4,8 +4,8 @@ import {COMMA, ENTER, I, SPACE} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { PostService } from 'src/app/services/post.service';
 import { Post } from 'src/app/dto/post.model';
+import { PostService } from 'src/app/services/save-post.service';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class PostComponent implements OnInit {
   showFriends: boolean = false;
   selectedFiles: FileList;
   fileInfos: string[] = [];
-  constructor(private fb: FormBuilder, private postService:PostService) { }
+  constructor(private fb: FormBuilder, private postService: PostService) { }
 
   ngOnInit(): void {
     this.getFriends();
@@ -103,7 +103,7 @@ export class PostComponent implements OnInit {
   }
 
   upload(file){
-    //this.uploadClicked();
+    this.uploadClicked();
     
     this.postService.upload(file).subscribe(
       event => {
