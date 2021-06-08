@@ -11,9 +11,9 @@ export class PostService {
   constructor(private _http: HttpClient) { }
 
   
- /* getLikedPosts(username:string):Observable<any>{
-    return this._http.get(this._APIUrl+username+'/likes/');
-  }*/
+  getCollections():Observable<any>{
+    return this._http.get(this._APIUrl+'collections');
+  }
 
 	getAllByLocation(location:string):Observable<any>{
     return this._http.get(this._APIUrl+'all/location/'+location);
