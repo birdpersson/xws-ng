@@ -1,6 +1,8 @@
+import { SearchService } from './../services/search.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
 
 @Component({
   selector: 'app-search',
@@ -9,14 +11,17 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private searchService:SearchService) { }
 
   selectedIndex:number;
+  users:UserRegistrationDTO[]=[];
+  locations:String[]=[];
+  hashtags:String[]=[];
 
   public searchForm :FormGroup;
   ngOnInit(): void {
     this.searchForm=this.fb.group({
-      search: ['']
+      query: ['']
     })
     this.selectedIndex=0;
   }
@@ -27,25 +32,59 @@ export class SearchComponent implements OnInit {
     this.checkSelectedTab();
   }
   checkSelectedTab(){
+    if(this.searchForm.controls['query'].value!=""){
+      switch(this.selectedIndex){
+        case 0:
+          {
+            this.searchUser();
+            break;
+            }
+        case 1:
+          {
+            this.searchTag();
+            break;
+          }
+        case 2:
+          {
+            this.searchLocation()
+            break;
+          }
+           }
+    }
     
-    switch(this.selectedIndex){
-      case 0:
-        {this.searchUser()}
-      case 1:
-        {this.searchTag()}
-      case 2:
-        {this.searchLocation()}
-         }
+  
       
   }
   searchLocation() {
-    throw new Error('Method not implemented.');
+    this.searchService.searchLocation(this.searchForm.controls['query'].value).subscribe(
+      l=>{
+        this.locations=l;
+        console.log(this.locations);
+      },err=>{
+        console.log(err.error);
+        
+      });
   }
   searchTag() {
-    throw new Error('Method not implemented.');
+    this.searchService.searchHashtags(this.searchForm.controls['query'].value).subscribe(
+      t=>{
+        this.hashtags=t;
+        console.log(this.hashtags);
+      },err=>{
+        console.log(err.error);
+        
+      });
   }
   searchUser() {
-    throw new Error('Method not implemented.');
+    this.searchService.searchUser(this.searchForm.controls['query'].value).subscribe(
+      u=>{
+        this.users=u;
+        console.log(this.users);
+      },err=>{
+        console.log(err.error);
+        
+      }
+    )
   }
 
 }

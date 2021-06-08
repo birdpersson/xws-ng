@@ -40,6 +40,8 @@ import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
+import { CollectionsComponent } from './collections/collections.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { FeedComponent } from './home/feed/feed/feed.component';
     SearchComponent,
     ProfileViewComponent,
     FeedComponent,
+    CollectionsComponent,
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule,

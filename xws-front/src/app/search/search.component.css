@@ -1,3 +1,26 @@
 .main{
     min-width: 80%;
 }
+
+.search-res {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+}
+
+
+.search-res li a {
+    display: block;
+    color: black;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.search-res li a:hover {
+    background-color: lightgray;
+    color: black;
+}
+

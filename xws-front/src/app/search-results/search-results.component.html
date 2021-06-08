@@ -1,0 +1,20 @@
+<div class="post" *ngFor="let post of posts" [value]="post.id">
+    <mat-card class="card1">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{post.username}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+                Caption:{{post.caption}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Like</button>
+            <button mat-raised-button>Comment</button>
+        </mat-card-actions>
+        <mat-divider></mat-divider>
+        <div class="date">Date:{{post.created|date:'mediumDate'}} {{post.created|date:'shortTime'}}</div>
+    </mat-card>
+</div>

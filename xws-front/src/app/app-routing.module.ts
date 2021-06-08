@@ -1,3 +1,5 @@
+import { CollectionsComponent } from './collections/collections.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './home/login/login.component';
@@ -26,27 +28,41 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path:'search',component:SearchComponent },
-      {  path: 'change-info', component: ChangeInfoComponent },
-      {  path: 'post', component: PostComponent },
-      { path:'feed',component:FeedComponent }            ]
+      { path:'search',component:SearchComponent },         
+      { path:'feed',component:FeedComponent },
+      { path: 'search/:type/:result',component:SearchResultsComponent}    ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
   
   
   {  path: 'profile-view',  component: ProfileViewComponent },
+
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']
   },
+  
   children:[
-    { path:'search',component:SearchComponent }
+    { path:'search',component:SearchComponent },
+    { path:'my-collections',component:CollectionsComponent } ,
+    { path: 'search/:type/:result',component:SearchResultsComponent}
   ]
  },
+
+  
+ 
   {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
   data: {
     allowedRoles: ['USER']
-  }}
+  },
+  children:[
+    { path:'search',component:SearchComponent },
+    { path:'my-collections',component:CollectionsComponent } ,
+    { path: 'search/:type/:result',component:SearchResultsComponent},
+    {  path: 'change-info', component: ChangeInfoComponent },
+    {  path: 'post', component: PostComponent },
+  ]
+}
 ];
 
 @NgModule({
