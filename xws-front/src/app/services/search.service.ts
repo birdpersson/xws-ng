@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SearchService {
 
-  private readonly _APIUrl="localhost:8080"
+  private readonly _APIUrl="https://localhost:8080"
   constructor(private _http: HttpClient) { }
 
   searchUser(query:string):Observable<any>{

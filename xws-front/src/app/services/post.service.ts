@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private readonly _APIUrl="localhost:8080/post"
+  private readonly _APIUrl="https://localhost:8080/post"
   constructor(private _http: HttpClient) { }
 
   
