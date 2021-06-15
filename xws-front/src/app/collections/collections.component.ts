@@ -1,7 +1,9 @@
+import { PostService } from './../services/post.service';
 import { Post } from './../model/post.model';
 import { Collection } from './../model/collection.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-collections',
@@ -10,10 +12,10 @@ import { FormControl } from '@angular/forms';
 })
 export class CollectionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postService:PostService) { }
 
   ngOnInit(): void {
-    this.collection=new Collection();
+    /*this.collection=new Collection();
     this.collection.collectionName="Ime";
     this.post.caption="hgeaklhgdag";
     this.post.id=1;
@@ -27,10 +29,24 @@ export class CollectionsComponent implements OnInit {
     this.collection.collectionName="dva";
     this.post.id=3;
     this.collection.posts.push(this.post);
-    this.collections.push(this.collection);
+    this.collections.push(this.collection);*/
+    this.likes.collectionName="Likes";
+    this.dislikes.collectionName="Dislikes";
+    this.favorites.collectionName="Favorites";
+    this.postService.getCollections().subscribe((data)=>{
+      this.likes.posts=(data.likes);
+      this.dislikes.posts=(data.dislikes);
+      this.favorites.posts=(data.favorites);
+      this.collections=(data.collections);      
+      this.collections.push(this.likes);
+      this.collections.push(this.dislikes);
+      this.collections.push(this.favorites);
+    });
   }
-  collection:Collection;
-  collections:Collection[]=[]
+  likes:Collection=new Collection;
+  dislikes:Collection=new Collection;
+  favorites:Collection=new Collection;
+  collections:Collection[]=[];
   post:Post=new Post();
   selected = new FormControl(0);
 

@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   
   checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
-    if (this.tokenStorageService.isLoggedIn()) {
+    /*if (this.tokenStorageService.isLoggedIn()) {
       this.roles=route.data.allowedRoles;
       if (this.roles == null || this.roles.length === 0) {
         return true;
@@ -42,7 +42,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     }
 
     this.router.navigate(['/']);
-    return false;
+    return false;*/return true;
   }
 
 

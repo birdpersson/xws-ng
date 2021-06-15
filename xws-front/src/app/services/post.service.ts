@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private readonly _APIUrl="http://localhost:8080/post/"
+  private readonly _APIUrl="http://localhost:8080/api/post/post/"
   constructor(private _http: HttpClient) { }
 
   
- /* getLikedPosts(username:string):Observable<any>{
-    return this._http.get(this._APIUrl+username+'/likes/');
-  }*/
+  getCollections():Observable<any>{
+    return this._http.get(this._APIUrl+'collections');
+  }
 
 	getAllByLocation(location:string):Observable<any>{
     return this._http.get(this._APIUrl+'all/location/'+location);
