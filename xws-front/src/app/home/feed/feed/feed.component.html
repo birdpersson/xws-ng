@@ -5,40 +5,42 @@
         <mat-card class="card1">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Ime profila</mat-card-title>
+                <mat-card-title  name="username" >{{comments[0].username}}</mat-card-title>
+                <mat-card-subtitle>{{location}}</mat-card-subtitle>
               </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <div>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              </div>
               <mat-card-content>
-                <p>
-                  Opis slike
+                <p name="desc" >
+                  {{description}}
                 </p>
               </mat-card-content>
               <mat-card-actions>
-                <button *ngIf="!liked" (click)="like()" mat-raised-button color="primary">Like</button>
-                <button *ngIf="liked" (click)="like()"  mat-raised-button color="primary">Unlike</button>
+                <button *ngIf="!liked" (click)="like()" mat-raised-button color="primary"><mat-icon>thumb_up_off_alt</mat-icon></button>
+                <button *ngIf="liked" (click)="like()"  mat-raised-button color="primary"><mat-icon>thumb_up</mat-icon></button>
                 <button mat-raised-button (click)="show()"><mat-icon>comment</mat-icon></button>
                 <br>
-                <span>lajkovi</span>&nbsp;&nbsp;&nbsp;
-                <span>komentari</span>
+                <span>likes</span>&nbsp;&nbsp;&nbsp;
+                <span>comments</span>
                 
                 <div *ngIf="showComments">
                     <mat-form-field class="example-form-field" >
                         <mat-label>Type your comment here...</mat-label>
-                        <textarea matInput rows="2"></textarea>
+                        <textarea matInput rows="2" [(ngModel)]="text"></textarea>
                       </mat-form-field>
-                      <button mat-raised-button>Comment</button>
+                      <button mat-raised-button (click)="saveComment()">Comment</button>
                     </div>
                       <br>
                     <mat-list *ngIf="showComments" role="list">
-                        <mat-list-item  role="listitem"><div><span>addqwdqd</span><br><span style="font-size:10px;">asdwqdqddcccxczczczc</span></div></mat-list-item>
-                        <mat-list-item role="listitem">Item 2</mat-list-item>
-                        <mat-list-item role="listitem">Item 3</mat-list-item>
-                      </mat-list>
+                        <mat-list-item  role="listitem" *ngFor="let comment of comments"><p><b>{{comment.username}}</b><br> {{comment.text}}<br> <span style="font-size:10px;">{{comment.date | date: 'short'}}</span></p></mat-list-item>
+                        
+                    </mat-list>
               </mat-card-actions>
               
               <mat-divider></mat-divider>
               <br>
-              <div>datum</div>
+              <div>6/8/2021</div>
               
         </mat-card>
     

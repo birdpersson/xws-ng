@@ -36,7 +36,7 @@ const routes: Routes = [
   
   
   {  path: 'profile-view',  component: ProfileViewComponent },
-
+  
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']
@@ -45,7 +45,8 @@ const routes: Routes = [
   children:[
     { path:'search',component:SearchComponent },
     { path:'my-collections',component:CollectionsComponent } ,
-    { path: 'search/:type/:result',component:SearchResultsComponent}
+    { path: 'search/:type/:result',component:SearchResultsComponent},
+    { path:'feed',component:FeedComponent },
   ]
  },
 
@@ -59,8 +60,11 @@ const routes: Routes = [
     { path:'search',component:SearchComponent },
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
+    { path:'feed',component:FeedComponent },
     {  path: 'change-info', component: ChangeInfoComponent },
     {  path: 'post', component: PostComponent },
+
+    
   ]
 }
 ];
