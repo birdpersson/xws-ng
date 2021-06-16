@@ -36,6 +36,7 @@ const routes: Routes = [
   
   
   {  path: 'profile-view',  component: ProfileViewComponent },
+  {  path: 'post', component: PostComponent },
   
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
@@ -62,7 +63,7 @@ const routes: Routes = [
     { path: 'search/:type/:result',component:SearchResultsComponent},
     { path:'feed',component:FeedComponent },
     {  path: 'change-info', component: ChangeInfoComponent },
-    {  path: 'post', component: PostComponent },
+    
 
     
   ]

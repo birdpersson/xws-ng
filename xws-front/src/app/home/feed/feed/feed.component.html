@@ -5,11 +5,11 @@
         <mat-card class="card1">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title  name="username" >{{comments[0].username}}</mat-card-title>
+                <mat-card-title  name="username" >{{username}}</mat-card-title>
                 <mat-card-subtitle>{{location}}</mat-card-subtitle>
               </mat-card-header>
               <div>
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <img mat-card-image src="clone\images\null\78405d55-05f4-4304-b84f-075ff6527622.png" alt="Photo of a Shiba Inu">
               </div>
               <mat-card-content>
                 <p name="desc" >
@@ -18,11 +18,14 @@
               </mat-card-content>
               <mat-card-actions>
                 <button *ngIf="!liked" (click)="like()" mat-raised-button color="primary"><mat-icon>thumb_up_off_alt</mat-icon></button>
-                <button *ngIf="liked" (click)="like()"  mat-raised-button color="primary"><mat-icon>thumb_up</mat-icon></button>
+                <button *ngIf="liked" mat-raised-button color="primary"><mat-icon>thumb_up</mat-icon></button>
+                <button *ngIf="!disliked" (click)="dislike()" mat-raised-button color="primary"><mat-icon>thumb_down_off_alt</mat-icon></button>
+                <button *ngIf="disliked" mat-raised-button color="primary"><mat-icon>thumb_down</mat-icon></button>
                 <button mat-raised-button (click)="show()"><mat-icon>comment</mat-icon></button>
                 <br>
-                <span>likes</span>&nbsp;&nbsp;&nbsp;
-                <span>comments</span>
+                <span>{{ld[0]}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{{ld[1]}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{{comnum}}</span>
                 
                 <div *ngIf="showComments">
                     <mat-form-field class="example-form-field" >

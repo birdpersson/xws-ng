@@ -8,8 +8,8 @@ import { Post } from '../dto/post.model';
 })
 export class PostService {
 
-  private mediaUrl = 'http://localhost:8080/media';
-  private postUrl = 'http://localhost:8080/post';
+  private mediaUrl = 'http://localhost:8082/media';
+  private postUrl = 'http://localhost:8081/post';
   private userUrl = 'http://localhost:8080/auth';
   constructor(private http: HttpClient) { }
 

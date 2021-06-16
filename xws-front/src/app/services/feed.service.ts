@@ -17,4 +17,16 @@ export class FeedService {
   getComments(id:string): Observable<any>{
     return this.http.get<any>(this._APIUrl+"getComments/"+id);
   }
+
+  like(id:string):Observable<number[]>{
+    return this.http.get<number[]>(this._APIUrl + id + "/like");
+  }
+
+  dislike(id:string):Observable<number[]>{
+    return this.http.get<number[]>(this._APIUrl + id + "/dislike");
+  }
+
+  getLikeDislike(id:string):Observable<any>{
+    return this.http.get(this._APIUrl + "getLikeDislike/" + id);
+  }
 }
