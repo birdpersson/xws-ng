@@ -1,3 +1,4 @@
+import { VerificationRequestDTO } from 'src/app/dto/verification-request-dto.model';
 import { HttpClient  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -26,6 +27,10 @@ export class UserService {
   resetPassword(token:string,password:string):Observable<any>{
     return this._http.post(this._APIUrl+'/reset-password',{token:token,password:password});
 
+  }
+
+  sendVerificationRequest(dto:VerificationRequestDTO):Observable<any>{
+    return this._http.post(this._APIUrl+'verification',dto);
   }
   
 }

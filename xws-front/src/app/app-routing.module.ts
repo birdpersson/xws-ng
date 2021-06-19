@@ -1,3 +1,4 @@
+import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { NgModule } from '@angular/core';
@@ -63,9 +64,8 @@ const routes: Routes = [
     { path: 'search/:type/:result',component:SearchResultsComponent},
     { path:'feed',component:FeedComponent },
     {  path: 'change-info', component: ChangeInfoComponent },
-    
+    { path:'verification-request' ,component:VerificationRequestComponent}
 
-    
   ]
 }
 ];

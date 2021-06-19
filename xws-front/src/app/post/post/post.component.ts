@@ -5,7 +5,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/dto/post.model';
-import { PostService } from 'src/app/services/save-post.service';
+import { PostService } from 'src/app/services/post.service';
 
 
 @Component({
