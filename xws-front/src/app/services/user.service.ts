@@ -1,4 +1,3 @@
-import { VerificationRequestDTO } from 'src/app/dto/verification-request-dto.model';
 import { HttpClient  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -11,11 +10,11 @@ import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
 
 export class UserService {
 
-  private readonly _APIUrl="http://localhost:8080/api/user/"
+  private readonly _APIUrl="http://localhost:8080/api/user/user"
   constructor(private _http: HttpClient) { }
 
   registration(user:UserRegistrationDTO):Observable<any>{
-    return this._http.post(this._APIUrl+'user/signup',user);
+    return this._http.post(this._APIUrl+'/signup',user);
 
   }
 
@@ -29,8 +28,6 @@ export class UserService {
 
   }
 
-  sendVerificationRequest(dto:VerificationRequestDTO):Observable<any>{
-    return this._http.post(this._APIUrl+'verification',dto);
-  }
+
   
 }

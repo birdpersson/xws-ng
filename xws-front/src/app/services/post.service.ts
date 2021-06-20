@@ -8,9 +8,9 @@ import { Post } from '../dto/post.model';
 })
 export class PostService {
 
-  private readonly mediaUrl = 'http://localhost:8081/media';
-  private readonly postUrl = 'http://localhost:8080/post';
-  private readonly userUrl = 'http://localhost:8080/auth';
+  private readonly mediaUrl = 'http://localhost:8080/api/media/media';
+  private readonly postUrl = 'http://localhost:8080/api/post/post';
+  private readonly userUrl = 'http://localhost:8080/api/user/auth';
   constructor(private _http: HttpClient) { }
 
 

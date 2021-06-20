@@ -43,6 +43,7 @@ import { FeedComponent } from './home/feed/feed/feed.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
+import { ReviewRequestsComponent } from './admin/review-requests/review-requests.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { VerificationRequestComponent } from './user/verification-request/verifi
     CollectionsComponent,
     SearchResultsComponent,
     VerificationRequestComponent,
+    ReviewRequestsComponent,
   ],
   imports: [
     BrowserModule,

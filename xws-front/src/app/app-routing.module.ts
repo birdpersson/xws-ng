@@ -1,7 +1,7 @@
 import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './home/login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +16,7 @@ import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
+import { ReviewRequestsComponent } from './admin/review-requests/review-requests.component';
 
 
 
@@ -49,6 +50,7 @@ const routes: Routes = [
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
     { path:'feed',component:FeedComponent },
+    { path:'review-requests',component:ReviewRequestsComponent}
   ]
  },
 

@@ -3,6 +3,7 @@ import { PostService } from './../../services/post.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VerificationRequestDTO } from 'src/app/dto/verification-request-dto.model';
+import { VerificationService } from 'src/app/services/verification.service';
 
 @Component({
   selector: 'app-verification-request',
@@ -15,7 +16,7 @@ export class VerificationRequestComponent implements OnInit {
   public verificationForm :FormGroup;
 
 
-  constructor(private fb: FormBuilder,private postService:PostService,private userService:UserService) { }
+  constructor(private fb: FormBuilder,private postService:PostService,private verificationService:VerificationService) { }
 
   selectedFiles: FileList;
   fileInfo: string='';
@@ -70,8 +71,8 @@ export class VerificationRequestComponent implements OnInit {
     this.dto.name=this.verificationForm.controls["firstname"].value;
     this.dto.name=' '+this.verificationForm.controls["surname"].value;
     this.dto.category=this.verificationForm.controls["category"].value;
-    this.dto.mediaurl=this.fileInfo;
-    this.userService.sendVerificationRequest(this.dto).subscribe(
+    this.dto.mediaUrl=this.fileInfo;
+    this.verificationService.sendVerificationRequest(this.dto).subscribe(
       res=>
       console.log(res)
     );
