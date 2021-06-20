@@ -7,4 +7,5 @@ export class User {
     birthday:Date;
     website:string;
     bio:string;
+    private: Boolean;
 }

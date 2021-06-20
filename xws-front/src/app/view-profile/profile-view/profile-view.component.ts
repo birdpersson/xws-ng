@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeInfoComponent } from 'src/app/change-info/change-info/change-info.component';
+import { ChangeInfo } from 'src/app/dto/change-info.model';
+import { IsFollowing } from 'src/app/dto/isFollowing';
 import { Post } from 'src/app/dto/post.model';
 import { PostAll } from 'src/app/dto/postAll.model';
 import { User } from 'src/app/dto/user.model';
+import { ChangeInfoService } from 'src/app/services/change-info.service';
 import { PostService } from 'src/app/services/post.service';
 import { ProfileViewService } from 'src/app/services/profile-view.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -14,20 +19,22 @@ import { ProfileViewService } from 'src/app/services/profile-view.service';
 })
 export class ProfileViewComponent implements OnInit {
 
-  constructor(private profileService:ProfileViewService, private postService:PostService, private sanitizer : DomSanitizer) { }
+  constructor(private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService) { }
 
   public user:User;
   public post:PostAll[]= new Array();
   public image: any;
+  public following: IsFollowing;
+  public userInfo: string;
 
   ngOnInit(): void {
     var adresa = window.location.pathname;
     var splitted = adresa.split("/");
     splitted[2]
     console.log(splitted[2]);
-    //this.getProfileInfo(splitted[2]);
-    this.getAllPosts(splitted[2]);
-    console.log("salica");
+    this.getProfileInfo(splitted[2]);
+    this.getFollow(splitted[2]);
+    //this.getAllPosts(splitted[2]);
     
   }
 
@@ -36,7 +43,7 @@ export class ProfileViewComponent implements OnInit {
     this.profileService.getProfileInfo(username).subscribe(
       u=>{
         this.user=u;
-        this.image = this.sanitizer.bypassSecurityTrustStyle(this.user[0].mediaUrl[0]);
+        //this.image = this.sanitizer.bypassSecurityTrustStyle(this.user[0].mediaUrl[0]);
         console.log(this.user);
       },err=>{
         console.log(err.error);
@@ -54,6 +61,63 @@ export class ProfileViewComponent implements OnInit {
         console.log(err.error);
       }
     )
+  }
+
+  checkPrivacy(){
+    if(this.user.private){
+      return true;
+    }
+    return false;
+  }
+
+  getFollow(username:string){
+    this.userService.checkFollowing(username).subscribe(
+      f=>{
+        this.following=f;
+        console.log(this.following);
+      },err=>{
+        console.log(err.error);
+      }
+    )
+  }
+
+  follow(username:string){
+    this.userService.follow(username).subscribe(
+      res=>{
+        if(this.user.private){
+          alert("Follow request sent");
+          location.reload();
+        }else{
+          alert("You followed" + this.user.username);
+          location.reload();
+        }
+
+      }
+    )
+  }
+
+  checkHome(username:string){
+    this.getInfo();
+    if(this.userInfo == username){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  getInfo(){
+    this.changeInfoService.getUserInfo().subscribe(
+      res => 
+      {
+        this.userInfo = res.username;
+        console.log(this.userInfo);
+        
+        
+      },
+      err => {
+        console.log(err);
+        }
+    );
   }
 
   

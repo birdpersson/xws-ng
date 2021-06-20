@@ -21,4 +21,9 @@ export class UserComponent implements OnInit {
       }
     );
   }
+   
+  follow(){
+    this.router.navigate(['follow_requests']);
+      
+  }
 }

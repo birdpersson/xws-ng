@@ -13,6 +13,7 @@ import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
+import { FollowRequestsComponent } from './follow_requests/follow-requests/follow-requests.component';
 
 
 
@@ -35,18 +36,22 @@ const routes: Routes = [
   {  path: 'change-info', component: ChangeInfoComponent },
   {  path: 'post', component: PostComponent },
   {  path: 'profile-view/:username',  component: ProfileViewComponent },
+  { path: 'follow_requests', component: FollowRequestsComponent },
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
     allowedRoles: ['ADMIN']
   },
   children:[
-    { path:'search',component:SearchComponent }
+    { path:'search',component:SearchComponent },
+    
   ]
  },
   {  path: 'user', component: UserComponent , canActivate: [AuthGuard],
+  
+    
   data: {
     allowedRoles: ['USER']
-  }}
+  }},
 ];
 
 @NgModule({
