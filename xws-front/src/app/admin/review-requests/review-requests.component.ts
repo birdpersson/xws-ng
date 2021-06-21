@@ -23,13 +23,31 @@ export class ReviewRequestsComponent implements OnInit {
     this.verificationRequests.push(this.v);
     this.v.id=2;
     this.verificationRequests.push(this.v);*/
-    this.verificationService.getAllVerificationRequest().subscribe(
-        (data)=>{
-            this.verificationRequests=(data);
-        }
-      );
+    this.fillRequest();
+   
   }
-  approved(id:number){console.log(id);}
+  approved(id:number){
+    this.verificationService.deleteVerificationRequest(id).subscribe(
+    res=>{
+      alert("Request approved");
+      this.fillRequest();
+    }
+    )}
   reject(id:number){
-    this.verificationService.deleteVerificationRequest(id).subscribe(res=>alert("Request rejected"))}
+    this.verificationService.deleteVerificationRequest(id).subscribe(
+      res=>{
+        alert("Request rejected");
+        this.fillRequest();
+      }
+      )
+    }
+
+  fillRequest(){
+    this.verificationService.getAllVerificationRequest().subscribe(
+      (data)=>{
+          this.verificationRequests=(data);
+      }
+    );
+  }
+
 }

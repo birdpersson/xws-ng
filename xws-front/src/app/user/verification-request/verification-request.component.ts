@@ -68,13 +68,15 @@ export class VerificationRequestComponent implements OnInit {
     
   }
   send(){
-    this.dto.name=this.verificationForm.controls["firstname"].value;
-    this.dto.name=' '+this.verificationForm.controls["surname"].value;
-    this.dto.category=this.verificationForm.controls["category"].value;
+    this.dto.name=this.verificationForm.controls['firstname'].value;
+    this.dto.name=this.dto.name+' '+this.verificationForm.controls['surname'].value;
+    this.dto.category=this.verificationForm.controls['category'].value;
+
     this.dto.mediaUrl=this.fileInfo;
     this.verificationService.sendVerificationRequest(this.dto).subscribe(
+
       res=>
-      console.log(res)
+      alert("Verification requested")
     );
   }
 

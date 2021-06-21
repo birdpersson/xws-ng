@@ -17,7 +17,7 @@ export class VerificationService {
   }
 
   getAllVerificationRequest():Observable<any>{
-    return this._http.get(this._APIUrl);
+    return this._http.get(this._APIUrl+'/');
   }
 
   deleteVerificationRequest(id:number):Observable<any>{
