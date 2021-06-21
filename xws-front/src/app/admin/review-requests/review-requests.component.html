@@ -1,0 +1,15 @@
+<h1>Requests</h1>
+<ul class="display-list">
+    <li *ngFor="let request of verificationRequests">
+       <div class="message">
+           <p class="text">Fullname: {{request.name}} 
+               <br> Category: {{request.category}}</p>
+           
+        </div> 
+        <img width="40%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+           <div class="action-button">
+            <button mat-raised-button (click)="approved(request.id)"> Approve</button>
+            <button mat-raised-button (click)="reject(request.id)"> Reject</button>
+           </div> 
+    </li>
+</ul>
