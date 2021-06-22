@@ -50,7 +50,10 @@ const routes: Routes = [
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
     { path:'feed',component:FeedComponent },
-    { path:'review-requests',component:ReviewRequestsComponent}
+    { path:'review-requests',component:ReviewRequestsComponent},
+    { path:'', 
+      redirectTo:"/admin/feed",
+          pathMatch:"full"},
   ]
  },
 
@@ -64,9 +67,13 @@ const routes: Routes = [
     { path:'search',component:SearchComponent },
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
+    { path:'', 
+      redirectTo:"/user/feed",
+        pathMatch:"full"},
     { path:'feed',component:FeedComponent },
     {  path: 'change-info', component: ChangeInfoComponent },
-    { path:'verification-request' ,component:VerificationRequestComponent}
+    { path:'verification-request' ,component:VerificationRequestComponent},
+
 
   ]
 }
