@@ -12,6 +12,7 @@ export class UserService {
 
   private readonly _APIUrl="http://localhost:8080/auth"
   private readonly _APIUrl1="http://localhost:8080/follow"
+  private readonly _APIUrl2="http://localhost:8080/user"
   constructor(private _http: HttpClient) { }
 
   Register(user:User):Observable<any>{
@@ -33,8 +34,28 @@ export class UserService {
     return this._http.get(this._APIUrl1+"/profile-view/" + username);
   }
 
+  checkFollowRequest(username:string):Observable<any>{
+    return this._http.get(this._APIUrl1+"/follow-request/" + username);
+  }
+
   follow(username:string):Observable<any>{
-    return this._http.post(this._APIUrl1+"/follow/" + username, {username}, {responseType: 'text'});
+    return this._http.get(this._APIUrl1+"/follow/" + username);
+  }
+
+  followRequests():Observable<any>{
+    return this._http.get(this._APIUrl2+"/follow-requests");
+  }
+
+  accept(username:string):Observable<any>{
+    return this._http.post(this._APIUrl1+"/accept/" + username, username);
+  }
+
+  deny(username:string):Observable<any>{
+    return this._http.post(this._APIUrl1+"/deny/" + username, username);
+  }
+
+  myPage(username:string):Observable<any>{
+    return this._http.get(this._APIUrl2+"/my-profile/" + username);
   }
   
 }

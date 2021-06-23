@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { concat } from 'rxjs';
 import { ChangeInfoComponent } from 'src/app/change-info/change-info/change-info.component';
 import { ChangeInfo } from 'src/app/dto/change-info.model';
 import { IsFollowing } from 'src/app/dto/isFollowing';
@@ -9,6 +10,7 @@ import { User } from 'src/app/dto/user.model';
 import { ChangeInfoService } from 'src/app/services/change-info.service';
 import { PostService } from 'src/app/services/post.service';
 import { ProfileViewService } from 'src/app/services/profile-view.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -19,23 +21,32 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileViewComponent implements OnInit {
 
-  constructor(private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService) { }
+  constructor(private tokenStorageService: TokenStorageService,private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService) { }
 
   public user:User;
   public post:PostAll[]= new Array();
   public image: any;
   public following: IsFollowing;
+  public request: IsFollowing;
   public userInfo: string;
+  public myPage: IsFollowing;
+  public logged: Boolean;
 
   ngOnInit(): void {
     var adresa = window.location.pathname;
     var splitted = adresa.split("/");
-    splitted[2]
     console.log(splitted[2]);
+      
     this.getProfileInfo(splitted[2]);
-    this.getFollow(splitted[2]);
-    //this.getAllPosts(splitted[2]);
-    
+    this.logged = this.tokenStorageService.isLoggedIn();
+    console.log(this.logged);
+    if(this.logged){
+      this.getMyProfile(splitted[2]);  
+      this.getFollow(splitted[2]);
+      this.getFollowRequest(splitted[2]);   
+    }
+     
+  //this.getAllPosts(splitted[2]);
   }
 
   getProfileInfo(username:string){
@@ -75,6 +86,22 @@ export class ProfileViewComponent implements OnInit {
       f=>{
         this.following=f;
         console.log(this.following);
+        console.log("jej");
+      },err=>{
+        console.log(err.error);
+      }
+    )
+  }
+
+  hi(){
+    console.log("hi"); 
+  }
+
+  getFollowRequest(username:string){
+    this.userService.checkFollowRequest(username).subscribe(
+      r=>{
+        this.request=r;
+        console.log(this.request);
       },err=>{
         console.log(err.error);
       }
@@ -88,7 +115,7 @@ export class ProfileViewComponent implements OnInit {
           alert("Follow request sent");
           location.reload();
         }else{
-          alert("You followed" + this.user.username);
+          alert("You followed " + this.user.username);
           location.reload();
         }
 
@@ -118,6 +145,17 @@ export class ProfileViewComponent implements OnInit {
         console.log(err);
         }
     );
+  }
+
+  getMyProfile(username:string){
+    this.userService.myPage(username).subscribe(
+      m=>{
+        this.myPage=m;
+        console.log(this.myPage);
+      },err=>{
+        console.log(err.error);
+      }
+    )
   }
 
   

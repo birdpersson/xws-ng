@@ -1,23 +1,24 @@
 <div class = "container">
     <mat-card class="card">
         <mat-card-header>
-            <div class = "center">FOLLOW REQUESTS</div> 
         </mat-card-header>
+        <div class = "center"><b>FOLLOW REQUESTS</b></div> 
         <br>
         <mat-divider></mat-divider>
         <br>
 
         <div>
-            <!--<div *ngFor=""> -->
+            <div *ngFor="let user of users">
               <mat-card class="card1">
-                  <div>
-                      Request 
-                      <button mat-raised-button   color="primary">Accept</button>
-                      <button mat-raised-button   color="primary">Deny</button>
+                  <div class = "center">
+                      <p class="text">{{user}}</p>
+                      <button mat-raised-button class = "button1"  color="primary" (click)="accept(user)">Accept</button>
+                      <button mat-raised-button class = "button2"  color="primary" (click)="deny(user)">Deny</button>
+                      
                   </div>
               </mat-card>
               <br>
-           <!-- </div>-->
+            </div>
         </div>
     </mat-card>
 </div>    
