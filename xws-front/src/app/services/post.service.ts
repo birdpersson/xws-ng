@@ -42,5 +42,4 @@ export class PostService {
     return this._http.get(this.postUrl+'/all/hashtags/'+hashtag);
 	}
 
-
 }
