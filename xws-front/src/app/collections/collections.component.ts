@@ -33,15 +33,19 @@ export class CollectionsComponent implements OnInit {
     this.likes.collectionName="Likes";
     this.dislikes.collectionName="Dislikes";
     this.favorites.collectionName="Favorites";
+    this.collections.push(this.likes);
+    this.collections.push(this.dislikes);
+    this.collections.push(this.favorites);
     this.postService.getCollections().subscribe((data)=>{
       this.likes.posts=(data.likes);
       this.dislikes.posts=(data.dislikes);
       this.favorites.posts=(data.favorites);
-      this.collections=(data.collections);      
+      this.collections=(data.collections); 
       this.collections.push(this.likes);
       this.collections.push(this.dislikes);
-      this.collections.push(this.favorites);
-    });
+      this.collections.push(this.favorites);}     
+
+    );
   }
   likes:Collection=new Collection;
   dislikes:Collection=new Collection;

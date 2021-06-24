@@ -10,11 +10,11 @@ import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
 
 export class UserService {
 
-  private readonly _APIUrl="http://localhost:8080/api/user/"
+  private readonly _APIUrl="http://localhost:8080/api/user/user"
   constructor(private _http: HttpClient) { }
 
   registration(user:UserRegistrationDTO):Observable<any>{
-    return this._http.post(this._APIUrl+'user/signup',user);
+    return this._http.post(this._APIUrl+'/signup',user);
 
   }
 
@@ -27,5 +27,7 @@ export class UserService {
     return this._http.post(this._APIUrl+'/reset-password',{token:token,password:password});
 
   }
+
+
   
 }

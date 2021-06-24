@@ -1,6 +1,7 @@
+import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './home/login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +19,7 @@ import { FeedComponent } from './home/feed/feed/feed.component';
 import { CustomCollectionComponent } from './custom-collection/custom-collection.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { ReportComponent } from './report/report.component';
+import { ReviewRequestsComponent } from './admin/review-requests/review-requests.component';
 
 
 
@@ -52,6 +54,10 @@ const routes: Routes = [
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
     { path:'feed',component:FeedComponent },
+    { path:'review-requests',component:ReviewRequestsComponent},
+    { path:'', 
+      redirectTo:"/admin/feed",
+          pathMatch:"full"},
   ]
  },
 
@@ -65,6 +71,9 @@ const routes: Routes = [
     { path:'search',component:SearchComponent },
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
+    { path:'', 
+      redirectTo:"/user/feed",
+        pathMatch:"full"},
     { path:'feed',component:FeedComponent },
     {  path: 'post', component: PostComponent },
     { path:'feed/post-page/:id',component:PostPageComponent } ,
@@ -73,9 +82,9 @@ const routes: Routes = [
  
     { path:'profile-view/report/:username',component:ReportComponent } ,
     {  path: 'change-info', component: ChangeInfoComponent },
-    
+    { path:'verification-request' ,component:VerificationRequestComponent},
 
-    
+
   ]
 }
 ];

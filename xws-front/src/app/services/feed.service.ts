@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FeedService {
 
-  private readonly _APIUrl="http://localhost:8081/post/"
+  private readonly _APIUrl="http://localhost:8080/api/post/post/"
   constructor(private http: HttpClient) { }
 
   comment(id:string, text:string): Observable<any>{

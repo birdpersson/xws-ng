@@ -1,0 +1,13 @@
+.hint{
+    font-size: 70%;
+    color:lightslategray;
+    padding: 5px,0;
+    max-width: 400px;
+}
+
+.file{
+    align-items: center;
+}
+.file input{
+    display: inline-block !important;
+}

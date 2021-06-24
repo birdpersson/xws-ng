@@ -45,6 +45,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { CustomCollectionComponent } from './custom-collection/custom-collection.component';
 import { PostPageComponent } from './post-page/post-page.component';
 import { ReportComponent } from './report/report.component';
+import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
+import { ReviewRequestsComponent } from './admin/review-requests/review-requests.component';
 
 
 @NgModule({
@@ -67,6 +69,8 @@ import { ReportComponent } from './report/report.component';
     CustomCollectionComponent,
     PostPageComponent,
     ReportComponent,
+    VerificationRequestComponent,
+    ReviewRequestsComponent,
   ],
   imports: [
     BrowserModule,

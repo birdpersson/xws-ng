@@ -1,0 +1,53 @@
+.display-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
+.display-list li {
+    background: #eee;
+    padding: 1em;
+    margin: 10px, 0;
+    height: auto;
+    margin-bottom: 1em;
+    display: flex;
+    width: 100%;
+}
+.display-list li p {
+    margin: 0;
+    left: 0;
+    position: absolute;
+}
+.display-list li p.text {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.display-list li ul li {
+    margin: 0;
+}
+.display-list li ul li .medicine {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0;
+}
+.display-list li p.date {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin-right: 10px;
+    bottom: 0;
+}
+.display-list li .message {
+    flex: 80%;
+    margin: 0em, 1px;
+    position: relative;
+}
+.display-list li button {
+    width: 150px;
+    margin: 0.5em;
+    font-size: 15px;
+    padding: auto, 10px;
+}

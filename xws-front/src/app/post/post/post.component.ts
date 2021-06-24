@@ -5,8 +5,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/dto/post.model';
-import { PostService } from 'src/app/services/save-post.service';
-import { MatListOption } from '@angular/material/list';
+import { PostService } from 'src/app/services/post.service';
 
 
 @Component({
@@ -39,7 +38,7 @@ export class PostComponent implements OnInit {
   selectedFiles: FileList;
   fileInfos: string[] = [];
 
-  @ViewChild('allSelected') private allSelected: MatListOption;
+  
   constructor(private fb: FormBuilder, private postService: PostService) { }
 
   ngOnInit(): void {
@@ -117,7 +116,6 @@ export class PostComponent implements OnInit {
       event => {
         
            /*event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');*/
-        this.getFiles();
         this.i++;
         
       }, 
@@ -162,15 +160,6 @@ export class PostComponent implements OnInit {
     this.postService.createPost(this.post).subscribe(
       res=> {
           alert("Post created successfully")
-      }
-    )
-  }
-
-  getFiles(){
-    this.postService.getFiles().subscribe(
-      res=>{
-        this.fileInfos = res;
-        console.log(this.fileInfos);
       }
     )
   }
