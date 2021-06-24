@@ -41,6 +41,13 @@ import { ProfileViewComponent } from './view-profile/profile-view/profile-view.c
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
 import { FollowRequestsComponent } from './follow_requests/follow-requests/follow-requests.component';
+import { CollectionsComponent } from './collections/collections.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { CustomCollectionComponent } from './custom-collection/custom-collection.component';
+import { PostPageComponent } from './post-page/post-page.component';
+import { ReportComponent } from './report/report.component';
+import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
+import { ReviewRequestsComponent } from './admin/review-requests/review-requests.component';
 
 
 @NgModule({
@@ -59,6 +66,13 @@ import { FollowRequestsComponent } from './follow_requests/follow-requests/follo
     ProfileViewComponent,
     FeedComponent,
     FollowRequestsComponent,
+    CollectionsComponent,
+    SearchResultsComponent,
+    CustomCollectionComponent,
+    PostPageComponent,
+    ReportComponent,
+    VerificationRequestComponent,
+    ReviewRequestsComponent,
   ],
   imports: [
     BrowserModule,

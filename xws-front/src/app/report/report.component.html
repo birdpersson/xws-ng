@@ -1,0 +1,28 @@
+<div class="formBox">
+    <h1><b>Report</b></h1>
+    <form [formGroup]="reportForm" autocomplete="off" style="text-align: center;">
+        <hr>
+
+        <mat-form-field appearance="fill" >
+            <mat-label>You</mat-label>
+            <input [disabled]="true" matInput placeholder="Username" name="username" formControlName="username">
+            
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" >
+            <mat-label>Reported user</mat-label>
+            <input matInput [disabled]="true" placeholder="Username" name="repUsername" formControlName="repUsername">
+            
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" >
+            <mat-label>Reason</mat-label>
+            <textarea rows="4" matInput placeholder="Reason" name="reason" formControlName="reason"></textarea>
+            
+        </mat-form-field>
+        <br>
+
+        <button mat-raised-button color="primary" (click)="submit()" style="text-align: center;">Submit</button>
+        <br>
+    </form>
+</div>

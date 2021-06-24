@@ -63,9 +63,16 @@ export class ChangeInfoComponent implements OnInit {
     
     this.service.changeInfo(this.changeInfo).subscribe(
       res=>{
-          location.reload();
+          this.logout();
+      },
+      err =>{
+          alert("Username already exists");
       }
     );
+  }
+
+  logout(){
+    this.service.logout();
   }
 
   

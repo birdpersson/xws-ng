@@ -1,0 +1,60 @@
+<div class="formBox">
+    <h1><b>Verification request!</b></h1>
+    <form [formGroup]="verificationForm" autocomplete="off">
+        <hr>
+        <mat-form-field>
+            <input matInput placeholder="First name" formControlName="firstname">
+            <mat-error *ngIf="verificationForm.controls['firstname'].hasError('required')">
+                First name is required!
+            </mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Surname" formControlName="surname">
+            <mat-error *ngIf="verificationForm.controls['surname'].hasError('required')">
+                Surname is required!
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-select placeholder="Category"  formControlName="category">
+                <mat-option value="Influencer" >
+                   Influencer
+                </mat-option>
+                <mat-option value="Sports" >
+                    Sports
+                </mat-option>
+                <mat-option value="Media" >
+                    Media
+                </mat-option>
+                <mat-option value="Business" >
+                    Business
+                </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="verificationForm.controls['category'].hasError('required')">
+                Category is required!
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <hr>
+        <div class="file">
+            <mat-label>Verification Document *</mat-label>
+            <br>
+            <input type="file" accept="image/*"  formControlName="file" (change)="selectFiles($event)" />
+            <br>
+            <br>
+            <button mat-raised-button (click)="uploadFiles()">Upload</button>
+        </div>
+        <hr>
+        <button mat-raised-button [disabled]="verificationForm.invalid" (click)="send()">Send request</button>
+
+        <br><br>
+        <div class="hint">
+            *Front page of your ID ,driver's license or 
+            passport is required for verification.
+            Make sure your fullname and picture is visible!
+        </div>
+    </form>
+</div>

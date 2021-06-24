@@ -8,29 +8,41 @@ import { Post } from '../dto/post.model';
 })
 export class PostService {
 
-  private mediaUrl = 'http://localhost:8080/media';
-  private postUrl = 'http://localhost:8080/post';
-  private userUrl = 'http://localhost:8080/auth';
-  constructor(private http: HttpClient) { }
+  private readonly mediaUrl = 'http://localhost:8080/api/media/media';
+  private readonly postUrl = 'http://localhost:8081/post';
+  private readonly userUrl = 'http://localhost:8080/auth';
+  constructor(private _http: HttpClient) { }
+
 
   upload(file:File){
     const formData: FormData = new FormData();
 
     formData.append('media', file);
 
-    return this.http.post(this.mediaUrl + "/upload", formData, {responseType:"text"});
+    return this._http.post(this.mediaUrl + "/upload", formData, {responseType:"text"});
   }
 
   getFriends():Observable<string[]>{
-    return this.http.get<string[]>(this.userUrl + "/getFriends")
+    return this._http.get<string[]>(this.userUrl + "/getFriends")
   }
 
   createPost(post: Post){
-    return this.http.post(this.postUrl + "/createPost", post, {responseType: "json"})
+    return this._http.post(this.postUrl + "/createPost", post, {responseType: "json"})
+  }
+  
+  getCollections():Observable<any>{
+    return this._http.get(this.postUrl+'/collections');
   }
 
   getAllPosts(username:string):Observable<any>{
-    return this.http.get(this.postUrl + "/" + username);
+    return this._http.get(this.postUrl + "/" + username);
   }
+	getAllByLocation(location:string):Observable<any>{
+    return this._http.get(this.postUrl+'/all/location/'+location);
+	}
+
+  getAllByyHashtah(hashtag:string):Observable<any>{
+    return this._http.get(this.postUrl+'/all/hashtags/'+hashtag);
+	}
 
 }

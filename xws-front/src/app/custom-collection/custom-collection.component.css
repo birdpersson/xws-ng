@@ -1,0 +1,13 @@
+.custom-scroll-bar{
+    height:20vh;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+
+.custom-scroll-bar::-webkit-scrollbar{
+    width: 5px;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb{
+    background: rgba(0,0,0,.26);
+}

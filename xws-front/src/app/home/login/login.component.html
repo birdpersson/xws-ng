@@ -4,13 +4,12 @@
         <hr>
         
         <mat-form-field>
-            <input matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+            <input matInput placeholder="Username" formControlName="username">
+            <!--<mat-error *ngIf="loginForm.controls['email'].hasError('email')">
                 Email not valid!
-            </mat-error >
-            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
-                Email is required!
-
+            </mat-error >-->
+            <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+                Username is required!
             </mat-error>
         </mat-form-field>
         <br>
@@ -31,7 +30,7 @@
         
         <mat-error *ngIf="f.submitted && isLoginFailed">
             <br>
-            Email and password don't match
+            Username and password don't match
         </mat-error>
     </form>
 </div>

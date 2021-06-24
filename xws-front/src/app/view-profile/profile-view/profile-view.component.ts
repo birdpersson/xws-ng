@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { concat } from 'rxjs';
 import { ChangeInfoComponent } from 'src/app/change-info/change-info/change-info.component';
 import { ChangeInfo } from 'src/app/dto/change-info.model';
@@ -21,7 +22,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileViewComponent implements OnInit {
 
-  constructor(private tokenStorageService: TokenStorageService,private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService) { }
+  constructor(private tokenStorageService: TokenStorageService,private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService,private route: ActivatedRoute) { }
 
   public user:User;
   public post:PostAll[]= new Array();
@@ -31,22 +32,27 @@ export class ProfileViewComponent implements OnInit {
   public userInfo: string;
   public myPage: IsFollowing;
   public logged: Boolean;
+  un:string;
 
   ngOnInit(): void {
     var adresa = window.location.pathname;
     var splitted = adresa.split("/");
     console.log(splitted[2]);
-      
-    this.getProfileInfo(splitted[2]);
+    this.route.params
+      .subscribe(params => {
+       this.un = params['username'];// you should have your id here.
+       console.log(this.un);
+      });  
+    this.getProfileInfo(this.un);
     this.logged = this.tokenStorageService.isLoggedIn();
     console.log(this.logged);
     if(this.logged){
-      this.getMyProfile(splitted[2]);  
-      this.getFollow(splitted[2]);
-      this.getFollowRequest(splitted[2]);   
+      this.getMyProfile(this.un);  
+      this.getFollow(this.un);
+      this.getFollowRequest(this.un);   
     }
      
-  //this.getAllPosts(splitted[2]);
+  this.getAllPosts(this.un);
   }
 
   getProfileInfo(username:string){

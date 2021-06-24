@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
-      email: ['', [Validators.required,Validators.email]],
+      username: ['', [Validators.required]],//,Validators.email
       password: ['', [Validators.required ]]
     })
     this.isLoginFailed=false;
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   //,Validators.email
   login(){
     var  credentials= new LoginCredentials();
-    credentials.username=this.loginForm.controls['email'].value;
+    credentials.username=this.loginForm.controls['username'].value;
     credentials.password= this.loginForm.controls['password'].value;
 
     this.authenticationService.Login(credentials).subscribe(

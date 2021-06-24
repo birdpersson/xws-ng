@@ -54,22 +54,31 @@
         <br>
         <mat-checkbox *ngIf="postForm.get('postType').value=='story'" class="example-margin"  name="highlight" formControlName="highlight">Story highlight</mat-checkbox>
         <br>
-        <button *ngIf="postForm.get('postType').value=='story'" mat-raised-button  (click)="show()" style="text-align: center;">Close friends</button>
-        <div *ngIf="showFriends">
+        <!-- <button *ngIf="postForm.get('postType').value=='story'" mat-raised-button  (click)="show()" style="text-align: center;">Close friends</button> -->
+        <div *ngIf="postForm.get('postType').value=='post'">
           
-            <mat-selection-list #list class="custom-scroll-bar" name="friendList" formControlName="friendList"> 
-                <mat-list-option *ngFor="let friend of friends" [value]="friend">
+            <mat-selection-list #list class="custom-scroll-bar" name="friendListPost" formControlName="friendListPost"> 
+                <mat-list-option *ngFor="let friend of friends" [selected]="isSelected" [disabled]="true" [value]="friend">
                   {{friend}}
                 </mat-list-option>
             </mat-selection-list>
             
+      </div>
+      <div *ngIf="postForm.get('postType').value=='story'">
+          
+        <mat-selection-list #list class="custom-scroll-bar" name="friendListStory" formControlName="friendListStory"> 
+            <mat-list-option *ngFor="let friend of friends" [value]="friend">
+              {{friend}}
+            </mat-list-option>
+        </mat-selection-list>
+        
       </div>
         
         
         <br>
         <br>
 
-        <button [disabled]="postForm.invalid " mat-raised-button color="primary" (click)="createPost()" style="text-align: center;">Post</button>
+        <button [disabled]="postForm.invalid || !clicked" mat-raised-button color="primary" (click)="createPost()" style="text-align: center;">Post</button>
 
         
         

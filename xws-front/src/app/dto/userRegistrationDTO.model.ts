@@ -1,11 +1,12 @@
-export class User {
+export class UserRegistrationDTO {
     username:string;
     password:string;
     name:string;
-    phoneNumber:string;
+    phone:string;
     email:string;
     birthday:Date;
     website:string;
     bio:string;
     private: Boolean;
+    gender:string;
 }

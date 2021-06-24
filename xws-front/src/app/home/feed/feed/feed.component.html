@@ -1,45 +1,43 @@
 <div class = "container">
         
         <br>
-
-        <mat-card class="card1">
+    <div *ngFor="let post of getPost">
+      <a href="#" [routerLink]="['post-page', post.id]" style="text-decoration:none">
+        <mat-card class="card1" >
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Ime profila</mat-card-title>
+                <div mat-card-avatar class="example-header-image">{{post.id}}</div>
+                <mat-card-title  name="username" >{{post.username}}</mat-card-title>
+                <mat-card-subtitle>{{post.location}}</mat-card-subtitle>
               </mat-card-header>
-              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              
+                <img mat-card-image src="https://robbreport.com/wp-content/uploads/2020/09/victor01.jpg?w=1000" alt="Photo of a Shiba Inu">
+      
+                <!-- <video width="500" height="500" controls>
+                  <source src="http://localhost:8082/media/files/c5d305bd-ccc4-42f2-8cb3-b06b264b16d1.mp4" type="video/mp4">
+                  
+                Your browser does not support the video tag.
+                </video> -->
+              
               <mat-card-content>
-                <p>
-                  Opis slike
+                <p name="desc" >
+                  {{post.description}}
                 </p>
               </mat-card-content>
               <mat-card-actions>
-                <button *ngIf="!liked" (click)="like()" mat-raised-button color="primary">Like</button>
-                <button *ngIf="liked" (click)="like()"  mat-raised-button color="primary">Unlike</button>
-                <button mat-raised-button (click)="show()"><mat-icon>comment</mat-icon></button>
-                <br>
-                <span>lajkovi</span>&nbsp;&nbsp;&nbsp;
-                <span>komentari</span>
                 
-                <div *ngIf="showComments">
-                    <mat-form-field class="example-form-field" >
-                        <mat-label>Type your comment here...</mat-label>
-                        <textarea matInput rows="2"></textarea>
-                      </mat-form-field>
-                      <button mat-raised-button>Comment</button>
-                    </div>
-                      <br>
-                    <mat-list *ngIf="showComments" role="list">
-                        <mat-list-item  role="listitem"><div><span>addqwdqd</span><br><span style="font-size:10px;">asdwqdqddcccxczczczc</span></div></mat-list-item>
-                        <mat-list-item role="listitem">Item 2</mat-list-item>
-                        <mat-list-item role="listitem">Item 3</mat-list-item>
-                      </mat-list>
+              
               </mat-card-actions>
               
               <mat-divider></mat-divider>
               <br>
-              <div>datum</div>
+              <span *ngFor="let tag of post.hashtags">#{{tag}}&nbsp;</span><br>
+              <span>{{post.date | date:'short'}}</span>
               
         </mat-card>
-    
+      </a>
+        <br>
+
+    </div>
+
+ 
 </div>    
