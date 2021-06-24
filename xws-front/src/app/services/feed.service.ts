@@ -29,4 +29,17 @@ export class FeedService {
   getLikeDislike(id:string):Observable<any>{
     return this.http.get(this._APIUrl + "getLikeDislike/" + id);
   }
+
+  getPosts():Observable<any[]>{
+    return this.http.get<any[]>(this._APIUrl + "/getFollowingPosts");
+  }
+
+  saveFavorite(id: string){
+    return this.http.post(this._APIUrl + id + "/favorite",'');
+
+  }
+
+  removeFavorite(id:string){
+    return this.http.post(this._APIUrl + id + "/unfavorite",'');
+  }
 }

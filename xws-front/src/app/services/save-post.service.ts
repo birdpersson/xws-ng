@@ -10,15 +10,16 @@ export class PostService {
 
   private mediaUrl = 'http://localhost:8082/media';
   private postUrl = 'http://localhost:8081/post';
+  private fileUrl = 'http://localhost:8081/file';
   private userUrl = 'http://localhost:8080/auth';
   constructor(private http: HttpClient) { }
 
   upload(file:File){
     const formData: FormData = new FormData();
 
-    formData.append('media', file);
+    formData.append('files', file);
 
-    return this.http.post(this.mediaUrl + "/upload", formData, {responseType:"text"});
+    return this.http.post(this.mediaUrl + "/upload-files", formData, {responseType:"text"});
   }
 
   getFriends():Observable<string[]>{
@@ -28,4 +29,10 @@ export class PostService {
   createPost(post: Post){
     return this.http.post(this.postUrl + "/createPost", post, {responseType: "json"})
   }
+
+  getFiles(): Observable<any>{
+    return this.http.get(this.fileUrl + "/files");
+
+  }
+  
 }

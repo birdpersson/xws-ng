@@ -1,50 +1,43 @@
 <div class = "container">
         
         <br>
-
-        <mat-card class="card1">
+    <div *ngFor="let post of getPost">
+      <a href="#" [routerLink]="['post-page', post.id]" style="text-decoration:none">
+        <mat-card class="card1" >
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title  name="username" >{{username}}</mat-card-title>
-                <mat-card-subtitle>{{location}}</mat-card-subtitle>
+                <div mat-card-avatar class="example-header-image">{{post.id}}</div>
+                <mat-card-title  name="username" >{{post.username}}</mat-card-title>
+                <mat-card-subtitle>{{post.location}}</mat-card-subtitle>
               </mat-card-header>
-              <div>
-                <img mat-card-image src="clone\images\null\78405d55-05f4-4304-b84f-075ff6527622.png" alt="Photo of a Shiba Inu">
-              </div>
+              
+                <img mat-card-image src="https://robbreport.com/wp-content/uploads/2020/09/victor01.jpg?w=1000" alt="Photo of a Shiba Inu">
+      
+                <!-- <video width="500" height="500" controls>
+                  <source src="http://localhost:8082/media/files/c5d305bd-ccc4-42f2-8cb3-b06b264b16d1.mp4" type="video/mp4">
+                  
+                Your browser does not support the video tag.
+                </video> -->
+              
               <mat-card-content>
                 <p name="desc" >
-                  {{description}}
+                  {{post.description}}
                 </p>
               </mat-card-content>
               <mat-card-actions>
-                <button *ngIf="!liked" (click)="like()" mat-raised-button color="primary"><mat-icon>thumb_up_off_alt</mat-icon></button>
-                <button *ngIf="liked" mat-raised-button color="primary"><mat-icon>thumb_up</mat-icon></button>
-                <button *ngIf="!disliked" (click)="dislike()" mat-raised-button color="primary"><mat-icon>thumb_down_off_alt</mat-icon></button>
-                <button *ngIf="disliked" mat-raised-button color="primary"><mat-icon>thumb_down</mat-icon></button>
-                <button mat-raised-button (click)="show()"><mat-icon>comment</mat-icon></button>
-                <br>
-                <span>{{ld[0]}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{{ld[1]}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{{comnum}}</span>
                 
-                <div *ngIf="showComments">
-                    <mat-form-field class="example-form-field" >
-                        <mat-label>Type your comment here...</mat-label>
-                        <textarea matInput rows="2" [(ngModel)]="text"></textarea>
-                      </mat-form-field>
-                      <button mat-raised-button (click)="saveComment()">Comment</button>
-                    </div>
-                      <br>
-                    <mat-list *ngIf="showComments" role="list">
-                        <mat-list-item  role="listitem" *ngFor="let comment of comments"><p><b>{{comment.username}}</b><br> {{comment.text}}<br> <span style="font-size:10px;">{{comment.date | date: 'short'}}</span></p></mat-list-item>
-                        
-                    </mat-list>
+              
               </mat-card-actions>
               
               <mat-divider></mat-divider>
               <br>
-              <div>6/8/2021</div>
+              <span *ngFor="let tag of post.hashtags">#{{tag}}&nbsp;</span><br>
+              <span>{{post.date | date:'short'}}</span>
               
         </mat-card>
-    
+      </a>
+        <br>
+
+    </div>
+
+ 
 </div>    

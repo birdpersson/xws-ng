@@ -42,6 +42,9 @@ import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { CustomCollectionComponent } from './custom-collection/custom-collection.component';
+import { PostPageComponent } from './post-page/post-page.component';
+import { ReportComponent } from './report/report.component';
 
 
 @NgModule({
@@ -61,6 +64,9 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     FeedComponent,
     CollectionsComponent,
     SearchResultsComponent,
+    CustomCollectionComponent,
+    PostPageComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

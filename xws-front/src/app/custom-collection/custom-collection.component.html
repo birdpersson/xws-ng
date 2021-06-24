@@ -1,0 +1,22 @@
+<div class="formBox">
+    <h1><b>Create Collection</b></h1>
+    <form [formGroup]="collectionForm" autocomplete="off" #f="ngForm" style="text-align: left;">
+        <hr>
+
+        <mat-form-field appearance="fill" >
+            <mat-label>Collection name</mat-label>
+            <input matInput name="name" formControlName="name"/>
+            <mat-error *ngIf="collectionForm.controls['name'].hasError('required')">
+                Cannot be empty!
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-selection-list #list class="custom-scroll-bar" name="imageList" formControlName="imageList"> 
+            <mat-list-option *ngFor="let post of posts" [value]="post.id">
+                <p>{{post.id}} &nbsp;<img src="https://robbreport.com/wp-content/uploads/2020/09/victor01.jpg?w=1000" width="50" height="45" alt=""> {{post.date | date:'short'}}</p>
+            </mat-list-option>     
+        </mat-selection-list>
+        <br>
+        <button [disabled]="collectionForm.invalid" mat-raised-button color="primary" (click)="saveCollection()" style="text-align: center;">Save</button>
+    </form>
+</div>

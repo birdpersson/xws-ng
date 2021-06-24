@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {COMMA, ENTER, I, SPACE} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/dto/post.model';
 import { PostService } from 'src/app/services/save-post.service';
+import { MatListOption } from '@angular/material/list';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class PostComponent implements OnInit {
   caption: string;
   isHighlighted: boolean = false;
   location: string;
+  isSelected:boolean = true;
   clicked = false;
   selectable = true;
   removable = true;
@@ -36,6 +38,8 @@ export class PostComponent implements OnInit {
   showFriends: boolean = false;
   selectedFiles: FileList;
   fileInfos: string[] = [];
+
+  @ViewChild('allSelected') private allSelected: MatListOption;
   constructor(private fb: FormBuilder, private postService: PostService) { }
 
   ngOnInit(): void {
@@ -49,7 +53,8 @@ export class PostComponent implements OnInit {
         }),
         tags: [this.tags],
         highlight: [false],
-        friendList: []
+        friendListPost: [this.friends],
+        friendListStory: []
 
       });
   }
@@ -98,7 +103,10 @@ export class PostComponent implements OnInit {
 
     for (let i = 0; i < this.selectedFiles.length; i++) {
       this.upload(this.selectedFiles[i]);
+      
     }
+
+    
 
   }
 
@@ -108,8 +116,8 @@ export class PostComponent implements OnInit {
     this.postService.upload(file).subscribe(
       event => {
         
-        this.fileInfos[this.i] = event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');
-        console.log(this.fileInfos[this.i]);
+           /*event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');*/
+        this.getFiles();
         this.i++;
         
       }, 
@@ -136,7 +144,13 @@ export class PostComponent implements OnInit {
   createPost(){
     console.log(this.tags);
     
-    this.closeFriends = this.postForm.get('friendList').value;
+    if(this.postForm.get('postType').value == "post"){
+      this.closeFriends = this.postForm.get('friendListPost').value;
+    }
+    else{
+      this.closeFriends = this.postForm.get('friendListStory').value;
+    }
+    console.log(this.closeFriends);
     this.isHighlighted = this.postForm.value.highlight;
     console.log(this.isHighlighted);
     console.log(this.closeFriends);
@@ -147,9 +161,27 @@ export class PostComponent implements OnInit {
     this.post = new Post(this.caption,this.location,this.postType,this.isHighlighted,this.tags, this.fileInfos, this.closeFriends);
     this.postService.createPost(this.post).subscribe(
       res=> {
-          console.log(res);
+          alert("Post created successfully")
       }
     )
   }
+
+  getFiles(){
+    this.postService.getFiles().subscribe(
+      res=>{
+        this.fileInfos = res;
+        console.log(this.fileInfos);
+      }
+    )
+  }
+
+  // toggleAllSelection() {
+  //   if (this.allSelected.selected) {
+  //     this.postForm.controls.friendList
+  //       .patchValue([...this.postForm.get('friendList').map(item => item.key), 0]);
+  //   } else {
+  //     this.postForm.controls.friendList.patchValue([]);
+  //   }
+  // }
   
 }

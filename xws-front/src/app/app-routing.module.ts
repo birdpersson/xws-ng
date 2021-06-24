@@ -15,6 +15,9 @@ import { PostComponent } from './post/post/post.component';
 import { ProfileViewComponent } from './view-profile/profile-view/profile-view.component';
 import { SearchComponent } from './search/search.component';
 import { FeedComponent } from './home/feed/feed/feed.component';
+import { CustomCollectionComponent } from './custom-collection/custom-collection.component';
+import { PostPageComponent } from './post-page/post-page.component';
+import { ReportComponent } from './report/report.component';
 
 
 
@@ -35,8 +38,9 @@ const routes: Routes = [
   {  path: 'reset-password', component: ResetPasswordComponent },
   
   
-  {  path: 'profile-view',  component: ProfileViewComponent },
-  {  path: 'post', component: PostComponent },
+  
+  
+  
   
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
@@ -62,6 +66,12 @@ const routes: Routes = [
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
     { path:'feed',component:FeedComponent },
+    {  path: 'post', component: PostComponent },
+    { path:'feed/post-page/:id',component:PostPageComponent } ,
+    {  path: 'custom-collection', component: CustomCollectionComponent },
+    {  path: 'profile-view',  component: ProfileViewComponent },
+ 
+    { path:'profile-view/report/:username',component:ReportComponent } ,
     {  path: 'change-info', component: ChangeInfoComponent },
     
 
