@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 export class AuthService {
 
-  private readonly _APIUrl="http://localhost:8080/api/user/auth"
+  private readonly _APIUrl="http://localhost:8080/auth"
   constructor(private _http: HttpClient) { }
   
   Login(credentials:LoginCredentials):Observable<any> {

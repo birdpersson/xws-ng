@@ -9,7 +9,7 @@ import { ChangeInfo } from '../dto/change-info.model';
 })
 export class ChangeInfoService {
 
-  private readonly _APIUrl="http://localhost:8080/api/user/auth";
+  private readonly _APIUrl="http://localhost:8080/auth";
   constructor(private http: HttpClient, private router: Router) { }
 
   getUserInfo(): Observable<ChangeInfo>{
