@@ -13,7 +13,15 @@
         <br>
         <mat-selection-list #list class="custom-scroll-bar" name="imageList" formControlName="imageList"> 
             <mat-list-option *ngFor="let post of posts" [value]="post.id">
-                <p>{{post.id}} &nbsp;<img src="https://robbreport.com/wp-content/uploads/2020/09/victor01.jpg?w=1000" width="50" height="45" alt=""> {{post.date | date:'short'}}</p>
+                <p>{{post.id}} &nbsp;
+                    <img *ngIf="post.media[0].endsWith('png') || post.media[0].endsWith('jpg')" src="{{post.media[0]}}" width="50" height="45" alt=""> 
+                    <video crossorigin="anonymous" *ngIf="post.media[0].endsWith('.mp4')" width="50" height="45" controls>
+                        <source src="{{post.media[0]}}" type="video/mp4">
+                        
+                      Your browser does not support the video tag.
+                      </video>
+                      {{post.date | date:'short'}}
+                </p>
             </mat-list-option>     
         </mat-selection-list>
         <br>

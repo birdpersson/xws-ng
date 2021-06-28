@@ -15,7 +15,7 @@ import { RegisterComponent } from './home/register/register.component';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthGuard } from './_helpers/auth.guard'
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import { NgImageSliderModule } from 'ng-image-slider';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,7 +43,9 @@ import { FeedComponent } from './home/feed/feed/feed.component';
 import { FollowRequestsComponent } from './follow_requests/follow-requests/follow-requests.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { CustomCollectionComponent } from './custom-collection/custom-collection.component';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { PostPageComponent } from './post-page/post-page.component';
 import { ReportComponent } from './report/report.component';
 import { VerificationRequestComponent } from './user/verification-request/verification-request.component';
@@ -78,9 +80,11 @@ import { ReviewRequestsComponent } from './admin/review-requests/review-requests
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxUsefulSwiperModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    NgImageSliderModule,
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
@@ -96,7 +100,8 @@ import { ReviewRequestsComponent } from './admin/review-requests/review-requests
     MatCheckboxModule,
     MatCardModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatCarouselModule.forRoot()
   ],
   providers: [
     AuthGuard,

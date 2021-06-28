@@ -44,12 +44,19 @@
         <div><ng-template #elseB >
           <div *ngIf="post.length>0; else elseBlock">
             <div *ngFor="let posts of post">
+              <a href="#" [routerLink]="['post-page', posts.id]" style="text-decoration:none">
               <mat-card class="card1">
                   <mat-card-header>
                       <div mat-card-avatar class="example-header-image"></div>
                       <mat-card-title>{{posts.username}}</mat-card-title>
                     </mat-card-header>
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                    <img *ngIf="posts.mediaUrls[0].endsWith('.png') || posts.mediaUrls[0].endsWith('.jpg')" mat-card-image  src="{{posts.mediaUrls[0]}}" alt="Photo of a Shiba Inu">
+      
+                    <video crossorigin="anonymous" *ngIf="posts.mediaUrls[0].endsWith('.mp4')" width="500" height="500" controls>
+                      <source src="{{posts.mediaUrls[0]}}" type="video/mp4">
+                      
+                    Your browser does not support the video tag.
+                    </video>
                     <mat-card-content>
                       <p>
                         {{posts.caption}}
@@ -59,14 +66,15 @@
                       </div>
                     </mat-card-content>
                     <mat-card-actions>
-                      {{posts.likes.length}}
+                      <!-- {{posts.likes.length}}
                       <button mat-raised-button color="primary">Like</button>
-                      <button mat-raised-button>Comment</button>
+                      <button mat-raised-button>Comment</button> -->
                     </mat-card-actions>
                     <mat-divider></mat-divider>
                     <br>
                     <div>{{posts.created |  date: 'dd/MM/yyyy'}} at {{posts.location}}</div>
               </mat-card>
+            </a>
               <br>
             </div>
         </div>

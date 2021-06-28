@@ -8,7 +8,7 @@ import { GetPostDTO } from '../dto/getPostDTO.model';
 })
 export class PostPageService {
 
-  private readonly _APIUrl="http://localhost:8081/post/";
+  private readonly _APIUrl="http://localhost:8080/post/";
   constructor(private http: HttpClient) { }
 
   getPost(id:string):Observable<GetPostDTO>{

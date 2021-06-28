@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SwiperOptions } from 'swiper';
 import { CommentDTO } from '../dto/getComment.model';
 import { GetPostDTO } from '../dto/getPostDTO.model';
 import { Post } from '../dto/post.model';
@@ -22,12 +23,24 @@ export class PostPageComponent implements OnInit {
   id: string;
   showComments: boolean;
   retrievedPost: GetPostDTO;
+  images: string[];
+  videos:string[];
+  medias: Array<object>;
   ld:number[]=[];
   text: string;
   comments: CommentDTO[] = [];
   username: string = "Ognjen";
   description: string = "Caoooooo";
   location: string = "Sremska Mitrovica"; 
+  config: SwiperOptions = {
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    spaceBetween: 30
+  };
+
   comment: Comment;
   isLoggedIn: boolean;
   constructor(private postService: PostPageService,private feedService: FeedService, private tokenService:TokenStorageService, private router: Router,private route: ActivatedRoute) { 
@@ -125,10 +138,31 @@ export class PostPageComponent implements OnInit {
     this.postService.getPost(id).subscribe(
       res => {
         this.retrievedPost = res;
+        this.images = this.getImages();
+        console.log(this.images);
+        this.videos = this.getVideos();
+        console.log(this.videos);
         
       }
     )
   }
 
 
+  getVideos() {
+    var videos = []
+    for(var media of this.retrievedPost.mediaUrls){
+      if(media.endsWith(".mp4") || media.endsWith(".mkv"))
+        videos.push(media);
+    }
+    return videos;
+  }
+
+  getImages() {
+    var images = []
+    for(var media of this.retrievedPost.mediaUrls){
+      if(media.endsWith(".jpg") || media.endsWith(".png"))
+        images.push(media)
+    }
+    return images;
+  }
 }

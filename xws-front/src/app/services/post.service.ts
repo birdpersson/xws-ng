@@ -8,8 +8,8 @@ import { Post } from '../dto/post.model';
 })
 export class PostService {
 
-  private readonly mediaUrl = 'http://localhost:8080/api/media/media';
-  private readonly postUrl = 'http://localhost:8081/post';
+  private readonly mediaUrl = 'http://localhost:8080/media';
+  private readonly postUrl = 'http://localhost:8080/post';
   private readonly userUrl = 'http://localhost:8080/auth';
   constructor(private _http: HttpClient) { }
 
@@ -17,9 +17,9 @@ export class PostService {
   upload(file:File){
     const formData: FormData = new FormData();
 
-    formData.append('media', file);
+    formData.append('files', file);
 
-    return this._http.post(this.mediaUrl + "/upload", formData, {responseType:"text"});
+    return this._http.post(this.mediaUrl + "/upload-files", formData, {responseType:"text"});
   }
 
   getFriends():Observable<string[]>{
@@ -44,5 +44,9 @@ export class PostService {
   getAllByyHashtah(hashtag:string):Observable<any>{
     return this._http.get(this.postUrl+'/all/hashtags/'+hashtag);
 	}
+
+  getFiles(): Observable<any> {
+    return this._http.get(this.mediaUrl + '/postFiles');
+  }
 
 }

@@ -8,7 +8,8 @@ import { VerificationRequestDTO } from '../dto/verification-request-dto.model';
 })
 export class VerificationService {
 
-  private readonly _APIUrl="http://localhost:8080/api/user/verification";
+  // private readonly _APIUrl="http://localhost:8080/api/user/verification";
+  private readonly _APIUrl="http://localhost:8080/verification";
 
   constructor(private _http: HttpClient) { }
 

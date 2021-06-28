@@ -10,13 +10,13 @@
                 <mat-card-subtitle>{{post.location}}</mat-card-subtitle>
               </mat-card-header>
               
-                <img mat-card-image src="https://robbreport.com/wp-content/uploads/2020/09/victor01.jpg?w=1000" alt="Photo of a Shiba Inu">
+                <img *ngIf="post.mediaUrls[0].endsWith('.png') || post.mediaUrls[0].endsWith('.jpg')" mat-card-image  src="{{post.mediaUrls[0]}}" alt="Photo of a Shiba Inu">
       
-                <!-- <video width="500" height="500" controls>
-                  <source src="http://localhost:8082/media/files/c5d305bd-ccc4-42f2-8cb3-b06b264b16d1.mp4" type="video/mp4">
+                <video crossorigin="anonymous" *ngIf="post.mediaUrls[0].endsWith('.mp4')" width="500" height="500" controls>
+                  <source src="{{post.mediaUrls[0]}}" type="video/mp4">
                   
                 Your browser does not support the video tag.
-                </video> -->
+                </video>
               
               <mat-card-content>
                 <p name="desc" >

@@ -2,24 +2,32 @@
                (selectedIndexChange)="selected.setValue($event)">
   <mat-tab *ngFor="let collection of collections; let index = index" [label]="collection.collectionName">
     <div class="post" *ngFor="let post of collection.posts" [value]="post.id">
+        <a href="" [routerLink]="['post-page', post.id]" style="text-decoration:none">
         <mat-card class="card1">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>{{post.username}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img *ngIf="post.mediaUrls[0].endsWith('.png') || post.mediaUrls[0].endsWith('.jpg')" mat-card-image  src="{{post.mediaUrls[0]}}" alt="Photo of a Shiba Inu">
+      
+            <video crossorigin="anonymous" *ngIf="post.mediaUrls[0].endsWith('.mp4')" width="500" height="500" controls>
+              <source src="{{post.mediaUrls[0]}}" type="video/mp4">
+              
+            Your browser does not support the video tag.
+            </video>
             <mat-card-content>
                 <p>
                     Caption:{{post.caption}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary">Like</button>
-                <button mat-raised-button>Comment</button>
+                <!-- <button mat-raised-button color="primary">Like</button>
+                <button mat-raised-button>Comment</button> -->
             </mat-card-actions>
             <mat-divider></mat-divider>
             <div class="date">Date:{{post.created|date:'mediumDate'}} {{post.created|date:'shortTime'}}</div>
         </mat-card>
+        </a>
     </div>
   </mat-tab>
 </mat-tab-group>

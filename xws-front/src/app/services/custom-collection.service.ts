@@ -9,8 +9,8 @@ import { CollectionDTO } from '../dto/custom-collection.model';
 })
 export class CustomCollectionService {
 
-  private readonly postUrl="http://localhost:8081/post/";
-  private readonly collectionUrl="http://localhost:8081/collection/";
+  private readonly postUrl="http://localhost:8080/post/";
+  private readonly collectionUrl="http://localhost:8080/collection/";
   constructor(private http: HttpClient) { }
 
   getPosts():Observable<CollectionPostDTO[]>{

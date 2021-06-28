@@ -6,7 +6,7 @@
                <br> Category: {{request.category}}</p>
            
         </div> 
-        <img width="40%" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img width="40%"  src="{{request.mediaUrl}}" alt="Photo of a Shiba Inu">
            <div class="action-button">
             <button mat-raised-button (click)="approved(request.id)"> Approve</button>
             <button mat-raised-button (click)="reject(request.id)"> Reject</button>

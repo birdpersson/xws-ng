@@ -57,8 +57,8 @@ export class VerificationRequestComponent implements OnInit {
     
     this.postService.upload(file).subscribe(
       event => {
-        
-        this.fileInfo = event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');
+        this.getFiles();
+        // this.fileInfo = event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');
         console.log(this.fileInfo);
         
       }, 
@@ -78,6 +78,17 @@ export class VerificationRequestComponent implements OnInit {
       res=>
       alert("Verification requested")
     );
+  }
+
+  getFiles(){
+    this.postService.getFiles().subscribe(
+      res=>{
+        this.fileInfo=res;
+        this.fileInfo = this.fileInfo.toString();
+        console.log(this.fileInfo);
+        // this.i++;
+      }
+    )
   }
 
 }

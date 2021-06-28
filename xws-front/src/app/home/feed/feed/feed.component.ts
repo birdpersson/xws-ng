@@ -17,6 +17,7 @@ export class FeedComponent implements OnInit {
   comnum: number;
   getPost: GetPostDTO[] = [];
   ld:number[]=[];
+  posts:any[];
   text: string;
   comments: CommentDTO[] = [];
   username: string = "Ognjen";
@@ -31,6 +32,23 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     
     this.getPosts();
+    // this.posts = this.getPost.map(item=>({
+    //   ...item,
+    //   ...item.mediaUrls.map(url=>{
+        
+    //       image:url
+        
+    //   })
+    // }))
+    
+    // this.posts = this.arrayToObject(this.getPost);
+    // console.log(this.posts);
+    // this.getPost.forEach(post=>{
+    //   post.mediaUrls.forEach(url=> {
+    //     url = { "image": url}
+    //   })
+    // })
+
     //this.getLikeDislike();
     //this.getComments();
    // this.isLoggedIn = this.tokenService.isLoggedIn();
@@ -40,9 +58,14 @@ export class FeedComponent implements OnInit {
     this.service.getPosts().subscribe(
       res => {
         this.getPost = res;
-        console.log(this.getPost);
+        //  console.log(this.getPost);
+  
+        console.log(this.posts);
       }
     )
   }
+
+  
+  
 
 }

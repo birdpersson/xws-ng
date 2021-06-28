@@ -114,9 +114,9 @@ export class PostComponent implements OnInit {
     
     this.postService.upload(file).subscribe(
       event => {
-        
+        this.getFiles();
            /*event.replace('[', '').replace(']','').replace('"','').replace('"','').replace('\\','').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\').replace('\\\\','\\');*/
-        this.i++;
+        // this.i++;
         
       }, 
       err => {
@@ -156,10 +156,21 @@ export class PostComponent implements OnInit {
     this.location = this.postForm.value.location;
     this.isHighlighted = this.postForm.value.highlight;
     this.postType = this.postForm.value.postType;
+    console.log(this.fileInfos);
     this.post = new Post(this.caption,this.location,this.postType,this.isHighlighted,this.tags, this.fileInfos, this.closeFriends);
     this.postService.createPost(this.post).subscribe(
       res=> {
           alert("Post created successfully")
+      }
+    )
+  }
+
+  getFiles(){
+    this.postService.getFiles().subscribe(
+      res=>{
+        this.fileInfos=res;
+        console.log(this.fileInfos);
+        // this.i++;
       }
     )
   }
