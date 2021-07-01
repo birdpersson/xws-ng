@@ -10,3 +10,14 @@
 ::ng-deep  .mat-list .mat-list-item{
     height:initial!important;
   }
+
+  .post{
+    max-width: 70%;
+    margin: auto;
+}
+.date{
+    font-size:12px;
+    padding-top: 5px;
+    font-weight: 500;
+
+}

@@ -1,4 +1,4 @@
-import { HttpClient  } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserRegistrationDTO } from '../dto/userRegistrationDTO.model';
@@ -57,6 +57,17 @@ export class UserService {
 
   myPage(username:string):Observable<any>{
     return this._http.get(this._APIUrl2+"/my-profile/" + username);
+  }
+
+  getLoggedUser():Observable<any>{
+    const httpOptionsText = {
+      headers: new HttpHeaders({
+        Accept: "text/plain",
+        "Content-Type": "text/plain"
+      }),
+      responseType: "text" as "json"
+    };
+    return this._http.get(this._APIUrl2 + "/getLoggedUser", httpOptionsText);
   }
   
 }

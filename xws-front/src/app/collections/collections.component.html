@@ -7,6 +7,10 @@
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>{{post.username}}</mat-card-title>
+                <mat-card-subtitle *ngIf="post.hashtags.length > 0"><span *ngFor="let tag of post.hashtags">#{{tag}}&nbsp;</span><br></mat-card-subtitle>
+            <mat-card-subtitle *ngIf="post.postType==='post'">{{post.postType | uppercase}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="post.postType==='story'">{{post.postType | uppercase}}</mat-card-subtitle>
+            <mat-card-subtitle>{{post.location}}</mat-card-subtitle>
             </mat-card-header>
             <img *ngIf="post.mediaUrls[0].endsWith('.png') || post.mediaUrls[0].endsWith('.jpg')" mat-card-image  src="{{post.mediaUrls[0]}}" alt="Photo of a Shiba Inu">
       
@@ -17,7 +21,7 @@
             </video>
             <mat-card-content>
                 <p>
-                    Caption:{{post.caption}}
+                {{post.caption}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
@@ -25,7 +29,7 @@
                 <button mat-raised-button>Comment</button> -->
             </mat-card-actions>
             <mat-divider></mat-divider>
-            <div class="date">Date:{{post.created|date:'mediumDate'}} {{post.created|date:'shortTime'}}</div>
+            <div class="date">{{post.created|date:'dd/MM/yyyy hh:mm'}}</div>
         </mat-card>
         </a>
     </div>

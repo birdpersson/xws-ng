@@ -6,4 +6,5 @@ export class GetPostDTO  {
     hashtags: string[];
     mediaUrls: string[];
     date: Date;
+    postType: string;
 }

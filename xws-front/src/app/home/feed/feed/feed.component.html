@@ -1,12 +1,15 @@
 <div class = "container">
         
         <br>
-    <div *ngFor="let post of getPost">
+    <div class="post" *ngFor="let post of getPost">
       <a href="#" [routerLink]="['post-page', post.id]" style="text-decoration:none">
         <mat-card class="card1" >
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image">{{post.id}}</div>
                 <mat-card-title  name="username" >{{post.username}}</mat-card-title>
+                <mat-card-subtitle *ngIf="post.hashtags.length > 0"><span *ngFor="let tag of post.hashtags">#{{tag}}&nbsp;</span><br></mat-card-subtitle>
+                <mat-card-subtitle *ngIf="post.postType==='post'">{{post.postType | uppercase}}</mat-card-subtitle>
+                <mat-card-subtitle *ngIf="post.postType==='story'">{{post.postType | uppercase}}</mat-card-subtitle>
                 <mat-card-subtitle>{{post.location}}</mat-card-subtitle>
               </mat-card-header>
               
@@ -30,8 +33,8 @@
               
               <mat-divider></mat-divider>
               <br>
-              <span *ngFor="let tag of post.hashtags">#{{tag}}&nbsp;</span><br>
-              <span>{{post.date | date:'short'}}</span>
+              <!-- <span *ngFor="let tag of post.hashtags">#{{tag}}&nbsp;</span><br> -->
+              <span class="date">{{post.date | date:'dd/MM/yyyy hh:mm'}}</span>
               
         </mat-card>
       </a>

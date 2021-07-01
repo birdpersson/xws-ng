@@ -5,6 +5,7 @@ import { GetPostDTO } from 'src/app/dto/getPostDTO.model';
 import { Post } from 'src/app/dto/post.model';
 import { FeedService } from 'src/app/services/feed.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-feed',
@@ -20,17 +21,17 @@ export class FeedComponent implements OnInit {
   posts:any[];
   text: string;
   comments: CommentDTO[] = [];
-  username: string = "Ognjen";
+  username: string;
   description: string = "Caoooooo";
   location: string = "Sremska Mitrovica"; 
   comment: Comment;
-  constructor(private service: FeedService, private tokenService:TokenStorageService, private router: Router) { 
+  constructor(private service: FeedService, private tokenService:TokenStorageService, private router: Router, private userService: UserService) { 
  
     
   }
 
   ngOnInit(): void {
-    
+    this.getLoggedUser();
     this.getPosts();
     // this.posts = this.getPost.map(item=>({
     //   ...item,
@@ -65,7 +66,14 @@ export class FeedComponent implements OnInit {
     )
   }
 
-  
+  getLoggedUser(){
+    this.userService.getLoggedUser().subscribe(
+      res=>{
+        this.username = res;
+        console.log(this.username);
+      }
+    )
+  }
   
 
 }

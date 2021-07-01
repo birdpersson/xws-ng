@@ -41,7 +41,7 @@ const routes: Routes = [
       { path:'feed',component:FeedComponent }            ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'follow_requests', component: FollowRequestsComponent },
+  
   
   {  path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
   data: {
@@ -80,6 +80,7 @@ const routes: Routes = [
     { path:'feed/post-page/:id',component:PostPageComponent } ,
     {  path: 'custom-collection', component: CustomCollectionComponent },
     // {  path: 'profile-view',  component: ProfileViewComponent },
+    { path: 'follow_requests', component: FollowRequestsComponent },
     { path: 'profile-view/:username',  component: ProfileViewComponent },
     { path: 'profile-view/:username/post-page/:id',  component: PostPageComponent },
     { path: 'my-collections/post-page/:id',  component: PostPageComponent },

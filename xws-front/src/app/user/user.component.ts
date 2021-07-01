@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../services/token-storage.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -9,9 +10,11 @@ import { TokenStorageService } from '../services/token-storage.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private tokenStorageService: TokenStorageService,private router: Router) { }
+  username: string;
+  constructor(private tokenStorageService: TokenStorageService,private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+   this.getLoggedUser();
   }
 
   logOut(){
@@ -26,4 +29,14 @@ export class UserComponent implements OnInit {
     this.router.navigate(['follow_requests']);
       
   }
+
+  getLoggedUser(){
+    this.userService.getLoggedUser().subscribe(
+      res=>{
+        this.username = res;
+        console.log(this.username);
+      }
+    )
+  }
+  
 }

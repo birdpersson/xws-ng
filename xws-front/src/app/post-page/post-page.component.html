@@ -1,13 +1,17 @@
 <div class = "container">
         
     <br>
-<div>
+<div class="post">
   
     <mat-card class="card1" >
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image" style="visibility: hidden;">{{retrievedPost.id}}</div>
+            <div mat-card-avatar class="example-header-image" >{{retrievedPost.id}}</div>
             <mat-card-title  name="username" >{{retrievedPost.username}}</mat-card-title>
+            <mat-card-subtitle *ngIf="retrievedPost.hashtags.length > 0"><span *ngFor="let tag of retrievedPost.hashtags">#{{tag}}&nbsp;</span><br></mat-card-subtitle>
+            <mat-card-subtitle *ngIf="retrievedPost.postType==='post'">{{retrievedPost.postType | uppercase}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="retrievedPost.postType==='story'">{{retrievedPost.postType | uppercase}}</mat-card-subtitle>
             <mat-card-subtitle>{{retrievedPost.location}}</mat-card-subtitle>
+            
           </mat-card-header>
           
               <swiper [config]="config" #usefulSwiper>
@@ -66,8 +70,8 @@
           
           <mat-divider></mat-divider>
           <br>
-          <span *ngFor="let tag of retrievedPost.hashtags">#{{tag}}&nbsp;</span><br>
-          <span>{{retrievedPost.date | date:'short'}}</span>
+          
+          <span class="date">{{retrievedPost.date | date:'dd/MM/yyyy hh:mm'}}</span>
           
     </mat-card>
   

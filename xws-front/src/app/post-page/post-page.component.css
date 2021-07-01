@@ -35,4 +35,13 @@
     align-items: center;
   }
   
- 
+  .post{
+    max-width: 70%;
+    margin: auto;
+}
+.date{
+    font-size:12px;
+    padding-top: 5px;
+    font-weight: 500;
+
+}

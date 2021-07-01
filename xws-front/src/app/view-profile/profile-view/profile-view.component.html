@@ -21,7 +21,7 @@
                 <button mat-raised-button class="button2"  color="primary"><a  href="#" [routerLink]="['report']" style="text-decoration:none; color: white;" >Report</a></button>
             </div>
             <div class= "center"><ng-template #drugo >
-              <button mat-raised-button class="button1"  color="primary">Upload</button>
+              <button mat-raised-button class="button1" routerLink="/user/post" color="primary">Upload</button>
               
             </ng-template></div>
       <!--   <button mat-raised-button class="button1"  color="primary">Report</button> -->  
@@ -43,12 +43,16 @@
 
         <div><ng-template #elseB >
           <div *ngIf="post.length>0; else elseBlock">
-            <div *ngFor="let posts of post">
+            <div class="post" *ngFor="let posts of post">
               <a href="#" [routerLink]="['post-page', posts.id]" style="text-decoration:none">
               <mat-card class="card1">
                   <mat-card-header>
                       <div mat-card-avatar class="example-header-image"></div>
                       <mat-card-title>{{posts.username}}</mat-card-title>
+                      <mat-card-subtitle *ngIf="posts.hashtags.length > 0"><span *ngFor="let tag of posts.hashtags">#{{tag}}&nbsp;</span><br></mat-card-subtitle>
+                      <mat-card-subtitle *ngIf="posts.postType==='post'">{{posts.postType | uppercase}}</mat-card-subtitle>
+                      <mat-card-subtitle *ngIf="posts.postType==='story'">{{posts.postType | uppercase}}</mat-card-subtitle>
+                      <mat-card-subtitle>{{posts.location}}</mat-card-subtitle>
                     </mat-card-header>
                     <img *ngIf="posts.mediaUrls[0].endsWith('.png') || posts.mediaUrls[0].endsWith('.jpg')" mat-card-image  src="{{posts.mediaUrls[0]}}" alt="Photo of a Shiba Inu">
       
@@ -61,9 +65,7 @@
                       <p>
                         {{posts.caption}}
                       </p>
-                      <div *ngFor="let hashtag of posts.hashtags">
-                        <p>{{hashtag }}</p>
-                      </div>
+                      
                     </mat-card-content>
                     <mat-card-actions>
                       <!-- {{posts.likes.length}}
@@ -72,7 +74,7 @@
                     </mat-card-actions>
                     <mat-divider></mat-divider>
                     <br>
-                    <div>{{posts.created |  date: 'dd/MM/yyyy'}} at {{posts.location}}</div>
+                    <div class="date">{{posts.created |  date: 'dd/MM/yyyy hh:mm'}}</div>
               </mat-card>
             </a>
               <br>
@@ -102,29 +104,37 @@
 
         
           <div *ngIf="post.length>0; else elseBlock">
-            <div *ngFor="let posts of post">
+            <div  class="post" *ngFor="let posts of post">
               <mat-card class="card1">
                   <mat-card-header>
                       <div mat-card-avatar class="example-header-image"></div>
                       <mat-card-title>{{posts.username}}</mat-card-title>
+                      <mat-card-subtitle *ngIf="posts.hashtags.length > 0"><span *ngFor="let tag of posts.hashtags">#{{tag}}&nbsp;</span><br></mat-card-subtitle>
+                      <mat-card-subtitle *ngIf="posts.postType==='post'">{{posts.postType | uppercase}}</mat-card-subtitle>
+                      <mat-card-subtitle *ngIf="posts.postType==='story'">{{posts.postType | uppercase}}</mat-card-subtitle>
+                      <mat-card-subtitle>{{posts.location}}</mat-card-subtitle>
                     </mat-card-header>
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                    <img *ngIf="posts.mediaUrls[0].endsWith('.png') || posts.mediaUrls[0].endsWith('.jpg')" mat-card-image  src="{{posts.mediaUrls[0]}}" alt="Photo of a Shiba Inu">
+      
+                    <video crossorigin="anonymous" *ngIf="posts.mediaUrls[0].endsWith('.mp4')" width="500" height="500" controls>
+                      <source src="{{posts.mediaUrls[0]}}" type="video/mp4">
+                      
+                    Your browser does not support the video tag.
+                    </video>
                     <mat-card-content>
                       <p>
                         {{posts.caption}}
                       </p>
-                      <div *ngFor="let hashtag of posts.hashtags">
-                        <p>{{hashtag }}</p>
-                      </div>
+                      
                     </mat-card-content>
                     <mat-card-actions>
-                      {{posts.likes.length}}
-                      <button mat-raised-button color="primary">Like</button>
-                      <button mat-raised-button>Comment</button>
+                      <!-- {{posts.likes.length}} -->
+                      <!-- <button mat-raised-button color="primary">Like</button>
+                      <button mat-raised-button>Comment</button> -->
                     </mat-card-actions>
                     <mat-divider></mat-divider>
                     <br>
-                    <div>{{posts.created |  date: 'dd/MM/yyyy'}} at {{posts.location}}</div>
+                    <div class="date">{{posts.created |  date: 'dd/MM/yyyy hh:mm'}}</div>
               </mat-card>
               <br>
             </div>

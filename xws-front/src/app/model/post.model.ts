@@ -9,5 +9,8 @@ export class Post {
 	likes:string[]=[];
     dislikes:string[]=[];
 	comments:string[]=[];
+	sharedWith: string[]=[];
+	highlighted: boolean;
+	postType: string;
 
 }

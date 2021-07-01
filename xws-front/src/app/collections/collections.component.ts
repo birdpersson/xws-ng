@@ -34,6 +34,7 @@ export class CollectionsComponent implements OnInit {
     this.likes.collectionName="Likes";
     this.dislikes.collectionName="Dislikes";
     this.favorites.collectionName="Favorites";
+    this.stories.collectionName = "Stories";
     // this.collections.push(this.likes);
     // this.collections.push(this.dislikes);
     // this.collections.push(this.favorites);
@@ -41,16 +42,19 @@ export class CollectionsComponent implements OnInit {
       this.likes.posts=(data.likes);
       this.dislikes.posts=(data.dislikes);
       this.favorites.posts=(data.favorites);
+      this.stories.posts = (data.stories);
       this.collections=(data.collections); 
       this.collections.push(this.likes);
       this.collections.push(this.dislikes);
-      this.collections.push(this.favorites);}     
+      this.collections.push(this.favorites);
+      this.collections.push(this.stories);}     
 
     );
   }
   likes:Collection=new Collection;
   dislikes:Collection=new Collection;
   favorites:Collection=new Collection;
+  stories: Collection = new Collection;
   collections:Collection[]=[];
   post:Post=new Post();
   selected = new FormControl(0);
