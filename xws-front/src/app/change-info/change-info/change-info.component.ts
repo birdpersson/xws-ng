@@ -13,7 +13,7 @@ export class ChangeInfoComponent implements OnInit {
 
   
   infoForm: FormGroup;
-  changeInfo: ChangeInfo;
+  changeInfo: ChangeInfo=new ChangeInfo("","","","","",new Date(),"","",false,true,true);
   datePipe: DatePipe = new DatePipe("en-US");
   name:string;
   constructor(private fb: FormBuilder, private service: ChangeInfoService) { }
@@ -21,6 +21,19 @@ export class ChangeInfoComponent implements OnInit {
   ngOnInit(): void {
     this.getInfo();
   // console.log(this.changeInfo);
+    this.infoForm=this.fb.group({
+      name: ["", [Validators.required]],
+      username: ["", [Validators.required]],
+      email: ["", [Validators.email]],
+      website: ["", []],
+      phone: ["", [Validators.pattern("[0-9]{9,10}")]],
+      picker: [new Date()],
+      gender: [""],
+      bio: ["", []],
+      privacy:[''],
+      allowMessages:[''],
+      allowTags:[''],
+    })
     
 
   }
@@ -31,16 +44,17 @@ export class ChangeInfoComponent implements OnInit {
       {
         this.changeInfo = res;
         console.log(this.changeInfo);
-        this.infoForm=this.fb.group({
-          name: [this.changeInfo.name, [Validators.required]],
-          username: [this.changeInfo.username, [Validators.required]],
-          email: [this.changeInfo.email, [Validators.email]],
-          website: [this.changeInfo.website, []],
-          phone: [this.changeInfo.phone, [Validators.pattern("[0-9]{9,10}")]],
-          picker: [new Date(this.changeInfo.date)],
-          gender: [this.changeInfo.gender.toLowerCase()],
-          bio: [this.changeInfo.bio, []]
-        })
+        this.infoForm.get('name').setValue(this.changeInfo.name);
+        this.infoForm.get('username').setValue(this.changeInfo.username);
+        this.infoForm.get('email').setValue(this.changeInfo.email);
+        this.infoForm.get('website').setValue(this.changeInfo.website);
+        this.infoForm.get('phone').setValue(this.changeInfo.phone);
+        this.infoForm.get('picker').setValue(new Date(this.changeInfo.date));
+        this.infoForm.get('gender').setValue(this.changeInfo.gender.toLowerCase());
+        this.infoForm.get('bio').setValue(this.changeInfo.bio);
+        this.infoForm.get('privacy').setValue(this.changeInfo.private);
+        this.infoForm.get('allowMessages').setValue(this.changeInfo.allowMessages);
+        this.infoForm.get('allowTags').setValue(this.changeInfo.allowTags);
         console.log(this.infoForm.value.picker);
       },
       err => {
@@ -50,6 +64,7 @@ export class ChangeInfoComponent implements OnInit {
   }
 
   submit(){
+    var oldUsername=this.changeInfo.username;
     this.changeInfo.name = this.infoForm.value.name;
     this.changeInfo.username = this.infoForm.value.username;
     this.changeInfo.email = this.infoForm.value.email;
@@ -58,12 +73,19 @@ export class ChangeInfoComponent implements OnInit {
     this.changeInfo.bio = this.infoForm.value.bio;
     this.changeInfo.gender = this.infoForm.value.gender;
     this.changeInfo.phone = this.infoForm.value.phone;
+    this.changeInfo.private = this.infoForm.value.privacy;
+    this.changeInfo.allowMessages = this.infoForm.value.allowMessages;
+    this.changeInfo.allowTags = this.infoForm.value.allowTags;
     
     console.log(this.changeInfo.gender);
     
     this.service.changeInfo(this.changeInfo).subscribe(
       res=>{
-          this.logout();
+          if(oldUsername===this.changeInfo.username)
+            this.ngOnInit();
+          else{
+            this.logout();
+          }
       },
       err =>{
           alert("Username already exists");
@@ -74,8 +96,4 @@ export class ChangeInfoComponent implements OnInit {
   logout(){
     this.service.logout();
   }
-
-  
-
-
 }

@@ -4,4 +4,10 @@
 
 mat-form-field{
     min-width: 50%;
+    width:30vw;
+}
+
+section{
+    text-align: left;
+    padding-left: 10px;
 }

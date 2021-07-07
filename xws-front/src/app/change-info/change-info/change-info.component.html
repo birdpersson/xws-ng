@@ -3,7 +3,7 @@
     <form [formGroup]="infoForm" autocomplete="off" #f="ngForm">
         <hr>
         
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" >
             <mat-label>Name</mat-label>
             <input required matInput placeholder="Name" name="name" formControlName="name" >
             <mat-error *ngIf="infoForm.controls['name'].hasError('required')">
@@ -50,16 +50,34 @@
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Gender</mat-label>
-            <select matNativeControl required name="gender" formControlName="gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <mat-select placeholder="Gender"  formControlName="gender">
+                <mat-option value="female" >
+                    Female
+                </mat-option>
+                <mat-option value="male" >
+                    Male
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Bio</mat-label>
             <textarea rows="2" cols="5" matInput name="bio" formControlName="bio"></textarea>
         </mat-form-field>
+        <br>
+        <section >
+            <mat-slide-toggle color="primary" formControlName="privacy">Private profile</mat-slide-toggle>
+        </section>
+            
+        <br>
+        <section >
+            <mat-slide-toggle color="primary" formControlName="allowMessages">Allow Messages</mat-slide-toggle>
+        </section>
+        
+        <br>
+        <section >
+            <mat-slide-toggle color="primary" formControlName="allowTags">Allow Tags</mat-slide-toggle>
+        </section>
         <br>
         <button mat-raised-button color="primary" (click)="submit()" [disabled]="infoForm.invalid">Submit</button>
     </form>
