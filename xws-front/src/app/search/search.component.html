@@ -12,7 +12,7 @@
 <mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)" width="90%">
     <mat-tab label="User">
         <ul class="search-res" *ngFor="let u of users">
-            <li><a href="#">{{u.username}}</a></li>
+            <li><a [routerLink]="['../', 'profile-view',u.username]">{{u.username}}</a></li>
         </ul>
     </mat-tab>
         

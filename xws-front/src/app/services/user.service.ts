@@ -1,3 +1,4 @@
+import { NotificationSettings } from './../dto/notification-settings.model';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -31,6 +32,18 @@ export class UserService {
 
   }
 
+  saveNotificationSettings(friend:NotificationSettings):Observable<any>{
+    return this._http.post(this._APIUrl2+'/notifications/'+friend.username,friend);
+  }
+
+  muteUser(username:string):Observable<any>{
+    return this._http.post(this._APIUrl2+'/mute/'+username,null);
+  }
+
+  blockUser(username:string):Observable<any>{
+    return this._http.post(this._APIUrl2+'/block/'+username,null);
+  }
+
   checkFollowing(username:string):Observable<any>{
     return this._http.get(this._APIUrl1+"/profile-view/" + username);
   }
@@ -60,14 +73,14 @@ export class UserService {
   }
 
   getLoggedUser():Observable<any>{
-    const httpOptionsText = {
+  /*  const httpOptionsText = {
       headers: new HttpHeaders({
         Accept: "text/plain",
         "Content-Type": "text/plain"
       }),
       responseType: "text" as "json"
-    };
-    return this._http.get(this._APIUrl2 + "/getLoggedUser", httpOptionsText);
+    };*/
+    return this._http.get(this._APIUrl2 + "/getLoggedUser");
   }
   
 }

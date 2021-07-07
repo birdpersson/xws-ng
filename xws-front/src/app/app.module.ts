@@ -1,3 +1,4 @@
+import { FriendSettingsDialogComponent } from './dialog/friend-settings-dialog/friend-settings-dialog.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
@@ -33,7 +34,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 
 import { ForgotPasswordComponent } from './home/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -77,6 +77,7 @@ import { ReviewRequestsComponent } from './admin/review-requests/review-requests
     ReportComponent,
     VerificationRequestComponent,
     ReviewRequestsComponent,
+    FriendSettingsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +107,9 @@ import { ReviewRequestsComponent } from './admin/review-requests/review-requests
     MatButtonToggleModule,
     MatSlideToggleModule,
     MatCarouselModule.forRoot()
+  ],
+  entryComponents:[
+    FriendSettingsDialogComponent
   ],
   providers: [
     AuthGuard,

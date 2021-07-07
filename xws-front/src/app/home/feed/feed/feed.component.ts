@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommentDTO } from 'src/app/dto/getComment.model';
 import { GetPostDTO } from 'src/app/dto/getPostDTO.model';
 import { Post } from 'src/app/dto/post.model';
+import { User } from 'src/app/dto/user.model';
 import { FeedService } from 'src/app/services/feed.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
@@ -17,6 +18,7 @@ export class FeedComponent implements OnInit {
   post: Post;
   comnum: number;
   getPost: GetPostDTO[] = [];
+  tempPosts: GetPostDTO[] = [];
   ld:number[]=[];
   posts:any[];
   text: string;
@@ -25,6 +27,7 @@ export class FeedComponent implements OnInit {
   description: string = "Caoooooo";
   location: string = "Sremska Mitrovica"; 
   comment: Comment;
+  user:User=new User();
   constructor(private service: FeedService, private tokenService:TokenStorageService, private router: Router, private userService: UserService) { 
  
     
@@ -58,9 +61,21 @@ export class FeedComponent implements OnInit {
   getPosts(){
     this.service.getPosts().subscribe(
       res => {
-        this.getPost = res;
-        //  console.log(this.getPost);
-  
+        this.tempPosts = res;
+        this.tempPosts.forEach(
+          (post)=>{
+            var blockedUser=false;
+            this.user.blocked.forEach(
+              blocked=>{
+                if(blocked.username===post.username){
+                      blockedUser=true;  
+                    }
+                  }
+                );
+            if(!blockedUser)
+              this.getPost.push(post);
+          }
+        )
         console.log(this.posts);
       }
     )
@@ -69,8 +84,9 @@ export class FeedComponent implements OnInit {
   getLoggedUser(){
     this.userService.getLoggedUser().subscribe(
       res=>{
-        this.username = res;
-        console.log(this.username);
+        this.user=res;
+        this.username = res.username;
+        this.getPosts();
       }
     )
   }

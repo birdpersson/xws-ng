@@ -1,3 +1,4 @@
+import { NotificationSettings } from './notification-settings.model';
 export class User {
     username:string;
     password:string;
@@ -8,4 +9,7 @@ export class User {
     website:string;
     bio:string;
     private: Boolean;
+    muted:User[]=[];
+    blocked:User[]=[];
+    notifications:NotificationSettings[]=[];
 }

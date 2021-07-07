@@ -1,4 +1,6 @@
+import { FriendSettingsDialogComponent } from './../../dialog/friend-settings-dialog/friend-settings-dialog.component';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { concat } from 'rxjs';
@@ -22,7 +24,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileViewComponent implements OnInit {
 
-  constructor(private tokenStorageService: TokenStorageService,private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService,private route: ActivatedRoute) { }
+  constructor(public dialog: MatDialog ,private tokenStorageService: TokenStorageService,private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService,private route: ActivatedRoute) { }
 
   public user:User;
   public post:PostAll[]= new Array();
@@ -165,5 +167,15 @@ export class ProfileViewComponent implements OnInit {
   }
 
   
-
+  settings(username:string){
+      const dialogRef = this.dialog.open(FriendSettingsDialogComponent, {
+        data: {username:username }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        alert(result);
+        this.ngOnInit();
+      });
+    }
+    
 }

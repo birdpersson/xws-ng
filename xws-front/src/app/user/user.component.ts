@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
   getLoggedUser(){
     this.userService.getLoggedUser().subscribe(
       res=>{
-        this.username = res;
+        this.username = res.username;
         console.log(this.username);
       }
     )

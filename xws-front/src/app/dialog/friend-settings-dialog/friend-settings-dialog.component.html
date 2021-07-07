@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Settings</h1>
+<div mat-dialog-content>
+  <form [formGroup]="settingsForm" autocomplete="off">
+      <section >
+        <mat-slide-toggle color="primary" formControlName="stories">stories</mat-slide-toggle>
+    </section>
+        
+    <br>
+    <section >
+        <mat-slide-toggle color="primary" formControlName="posts">posts</mat-slide-toggle>
+    </section>
+
+    <br>
+    <section >
+        <mat-slide-toggle color="primary" formControlName="comments">comments</mat-slide-toggle>
+    </section>
+    <br>
+    <section >
+        <mat-slide-toggle color="primary" formControlName="messages">messages</mat-slide-toggle>
+  </section>
+  <br>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="save()" cdkFocusInitial>Save notification settings</button>
+  <button mat-button (click)="mute()" cdkFocusInitial>Mute user</button>
+  <button mat-button (click)="block()" cdkFocusInitial>Block user</button>
+</div>
