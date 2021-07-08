@@ -73,14 +73,24 @@ export class UserService {
   }
 
   getLoggedUser():Observable<any>{
-  /*  const httpOptionsText = {
+   const httpOptionsText = {
       headers: new HttpHeaders({
         Accept: "text/plain",
         "Content-Type": "text/plain"
       }),
       responseType: "text" as "json"
-    };*/
-    return this._http.get(this._APIUrl2 + "/getLoggedUser");
+    };
+    return this._http.get(this._APIUrl2 + "/getLoggedUser",httpOptionsText);
+  }
+
+  getFullLoggedUser():Observable<any>{
+    
+     return this._http.get(this._APIUrl2 + "/getFullLoggedUser");
+   }
+
+   checkTags(username:string):Observable<boolean>{
+    
+    return this._http.get<boolean>(this._APIUrl2 + "/checkTags/" + username);
   }
   
 }

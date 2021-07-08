@@ -37,7 +37,7 @@
         <!--<div class= "center"><b>This profile is private</b></div>
         <div class= "center">Follow to see their photos and videos.</div> -->
 
-        <div *ngIf="checkPrivacy() && !following.follow; else elseB">
+        <div *ngIf="(checkPrivacy() && !following.follow && !myPage.follow); else elseB">
           <div class= "center"><b>This profile is private</b></div>
           <div class= "center">Follow to see their photos and videos.</div>
         </div>

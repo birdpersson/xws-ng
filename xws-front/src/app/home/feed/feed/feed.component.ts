@@ -35,7 +35,8 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoggedUser();
-    this.getPosts();
+    this.getFullLogeedUser();
+    // this.getPosts();
     // this.posts = this.getPost.map(item=>({
     //   ...item,
     //   ...item.mediaUrls.map(url=>{
@@ -84,8 +85,18 @@ export class FeedComponent implements OnInit {
   getLoggedUser(){
     this.userService.getLoggedUser().subscribe(
       res=>{
-        this.user=res;
+        
         this.username = res.username;
+        
+      }
+    )
+  }
+
+  getFullLogeedUser(){
+    this.userService.getFullLoggedUser().subscribe(
+      res=>{
+        this.user=res;
+        
         this.getPosts();
       }
     )

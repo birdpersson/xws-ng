@@ -29,7 +29,7 @@ export class FriendSettingsDialogComponent implements OnInit {
       messages:['']
     })
 
-    this.userService.getLoggedUser().subscribe(
+    this.userService.getFullLoggedUser().subscribe(
         data=>{
           this.user=data;
           this.user.notifications.forEach((notification)=>{
