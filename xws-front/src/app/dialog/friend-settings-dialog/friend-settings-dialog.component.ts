@@ -75,7 +75,7 @@ export class FriendSettingsDialogComponent implements OnInit {
     this.userService.saveNotificationSettings(this.friend).subscribe(
       data=>{
             console.log(data);
-            this.dialogRef.close();
+            this.dialogRef.close("Changes saved");
       }
     )
   }

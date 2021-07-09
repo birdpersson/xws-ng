@@ -27,6 +27,7 @@ export class ProfileViewComponent implements OnInit {
   constructor(public dialog: MatDialog ,private tokenStorageService: TokenStorageService,private profileService:ProfileViewService, private postService:PostService, private userService:UserService, private sanitizer : DomSanitizer, private changeInfoService:ChangeInfoService,private route: ActivatedRoute) { }
 
   public user:User;
+  loggedUser:User;
   public post:PostAll[]= new Array();
   public image: any;
   public following: IsFollowing;
@@ -34,9 +35,11 @@ export class ProfileViewComponent implements OnInit {
   public userInfo: string;
   public myPage: IsFollowing;
   public logged: Boolean;
+  public blocked:Boolean;
   un:string;
 
   ngOnInit(): void {
+    this.blocked=false;
     var adresa = window.location.pathname;
     var splitted = adresa.split("/");
     console.log(splitted[2]);
@@ -49,6 +52,7 @@ export class ProfileViewComponent implements OnInit {
     this.logged = this.tokenStorageService.isLoggedIn();
     console.log(this.logged);
     if(this.logged){
+      this.getFullLogeedUser();
       this.getMyProfile(this.un);  
       this.getFollow(this.un);
       this.getFollowRequest(this.un);   
@@ -131,6 +135,25 @@ export class ProfileViewComponent implements OnInit {
     )
   }
 
+  isBlocked(){
+    this.loggedUser.blocked.forEach((b)=>{
+      if(b.username===this.un)
+        this.blocked=true;
+    });
+      console.log(this.blocked);
+  }
+
+  getFullLogeedUser(){
+    this.userService.getFullLoggedUser().subscribe(
+      res=>{
+        this.loggedUser=res;
+        if(!(this.loggedUser.username===this.un))
+              this.isBlocked();
+      }
+    )
+  }
+
+
   checkHome(username:string){
     this.getInfo();
     if(this.userInfo == username){
@@ -166,6 +189,12 @@ export class ProfileViewComponent implements OnInit {
     )
   }
 
+  block(){
+    this.userService.blockUser(this.un).subscribe(res=>{
+        alert("User "+this.un+" blocked");
+    })
+  }
+
   
   settings(username:string){
       const dialogRef = this.dialog.open(FriendSettingsDialogComponent, {
@@ -173,8 +202,11 @@ export class ProfileViewComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        alert(result);
-        this.ngOnInit();
+        if(result!=undefined)
+        {
+          alert(result);
+          this.ngOnInit();
+        }
       });
     }
     

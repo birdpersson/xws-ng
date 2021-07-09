@@ -69,10 +69,21 @@ export class FeedComponent implements OnInit {
             this.user.blocked.forEach(
               blocked=>{
                 if(blocked.username===post.username){
-                      blockedUser=true;  
+                      blockedUser=true; 
+                      return false; 
                     }
                   }
                 );
+          if(!blockedUser){
+            this.user.muted.forEach(
+              muted=>{
+                if(muted.username===post.username){
+                      blockedUser=true;  
+                      return false;
+                    }
+                  }
+                );
+          }
             if(!blockedUser)
               this.getPost.push(post);
           }
@@ -86,7 +97,7 @@ export class FeedComponent implements OnInit {
     this.userService.getLoggedUser().subscribe(
       res=>{
         
-        this.username = res.username;
+        this.username = res;
         
       }
     )

@@ -8,17 +8,21 @@
             <div *ngIf="!myPage.follow; else drugo ">
 
                 <div *ngIf="following.follow; else elseBl">
-                  <button mat-raised-button class="button1" color="primary">Following</button>
-                  <button mat-raised-button class="button1" (click)="settings(user.username)" color="primary">Settings</button>
+                  <button mat-raised-button class="button1" disabled color="primary">Following</button>
+                  <button mat-raised-button class="button3" *ngIf="!blocked" (click)="settings(user.username)" color="primary">Settings</button>
+
                 </div> 
                 <div class= "center"><ng-template #elseBl >
-                  <div *ngIf="request.follow; else elseBlo">
+                  <div *ngIf="request.follow&&!blocked; else elseBlo">
                     <button mat-raised-button class="button1" color="primary" disabled>Follow request sent</button>
+                    <button mat-raised-button class="button3" (click)="block()"  >Block user</button>
                   </div> 
                 <div class= "center"><ng-template #elseBlo >       
-                  <button mat-raised-button class="button1" (click)="follow(user.username)" color="primary">Follow</button>
+                  <button mat-raised-button class="button1"  *ngIf="!blocked" (click)="follow(user.username)" color="primary">Follow</button>
+                  <button mat-raised-button class="button3" *ngIf="!blocked" (click)="block()" >Block user</button>
                 </ng-template></div>
                 </ng-template></div>
+                
                 <button mat-raised-button class="button2"  color="primary"><a  href="#" [routerLink]="['report']" style="text-decoration:none; color: white;" >Report</a></button>
             </div>
             <div class= "center"><ng-template #drugo >
@@ -30,20 +34,20 @@
         <!--<button mat-raised-button disabled>Following</button>
             <button mat-raised-button disabled>Requested</button> -->
         </mat-card-header>
-        <div class= "center">biografija</div>
+        <div class= "center">Biography</div>
         <br>
         <mat-divider></mat-divider>
         <br>
         <!--<div class= "center"><b>This profile is private</b></div>
         <div class= "center">Follow to see their photos and videos.</div> -->
 
-        <div *ngIf="(checkPrivacy() && !following.follow && !myPage.follow); else elseB">
+        <div *ngIf="(checkPrivacy() && !following.follow && !myPage.follow&&!blocked); else elseB">
           <div class= "center"><b>This profile is private</b></div>
           <div class= "center">Follow to see their photos and videos.</div>
         </div>
 
         <div><ng-template #elseB >
-          <div *ngIf="post.length>0; else elseBlock">
+          <div *ngIf="(post.length>0&&!blocked); else elseBlock">
             <div class="post" *ngFor="let posts of post">
               <a href="#" [routerLink]="['post-page', posts.id]" style="text-decoration:none">
               <mat-card class="card1">
@@ -81,7 +85,8 @@
               <br>
             </div>
         </div>
-        <div class= "center"><ng-template #elseBlock ><div class="center">User has no photos</div></ng-template></div>
+        <div class= "center"><ng-template #elseBlock *ngIf="!blocked; else userBlocked"><div class="center">User has no photos</div></ng-template></div>
+        <div class= "center"><ng-template #userBlocked ><div class="center" *ngIf="blocked">User is blocked</div></ng-template></div>
         </ng-template></div>
     </mat-card>
   <!--</div> -->
