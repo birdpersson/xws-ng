@@ -36,8 +36,10 @@ const routes: Routes = [
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path:'search',component:SearchComponent },
       { path: 'profile-view/:username',  component: ProfileViewComponent },
+      { path: 'search/:type/:result/post-page/:id',  component: PostPageComponent },
       { path:'profile-view/:username/report',component:ReportComponent } ,
       { path: 'post', component: PostComponent },
+      { path: 'search/:type/:result',component:SearchResultsComponent},
       { path:'feed',component:FeedComponent }            ]
   },
   {  path: 'reset-password', component: ResetPasswordComponent },
@@ -52,6 +54,7 @@ const routes: Routes = [
     { path:'search',component:SearchComponent },
     { path:'my-collections',component:CollectionsComponent } ,
     { path: 'search/:type/:result',component:SearchResultsComponent},
+    { path: 'search/:type/:result/post-page/:id',  component: PostPageComponent },
     { path:'feed',component:FeedComponent },
     { path:'review-requests',component:ReviewRequestsComponent},
     { path:'', 

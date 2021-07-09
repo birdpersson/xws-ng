@@ -9,6 +9,7 @@
 
                 <div *ngIf="following.follow; else elseBl">
                   <button mat-raised-button class="button1" color="primary">Following</button>
+                  <button mat-raised-button class="button1" (click)="settings(user.username)" color="primary">Settings</button>
                 </div> 
                 <div class= "center"><ng-template #elseBl >
                   <div *ngIf="request.follow; else elseBlo">
@@ -36,7 +37,7 @@
         <!--<div class= "center"><b>This profile is private</b></div>
         <div class= "center">Follow to see their photos and videos.</div> -->
 
-        <div *ngIf="checkPrivacy() && !following.follow; else elseB">
+        <div *ngIf="(checkPrivacy() && !following.follow && !myPage.follow); else elseB">
           <div class= "center"><b>This profile is private</b></div>
           <div class= "center">Follow to see their photos and videos.</div>
         </div>

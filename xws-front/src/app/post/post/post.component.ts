@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/dto/post.model';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class PostComponent implements OnInit {
   fileInfos: string[] = [];
 
   
-  constructor(private fb: FormBuilder, private postService: PostService) { }
+  constructor(private fb: FormBuilder, private postService: PostService, private userService:UserService) { }
 
   ngOnInit(): void {
     this.getFriends();
@@ -65,7 +66,18 @@ export class PostComponent implements OnInit {
 
     // Add our fruit
     if (value) {
-      this.tags.push(value);
+      if(value.startsWith("@")){
+        this.userService.checkTags(value).subscribe(
+          res=>{
+            let bool = res;
+            if(bool){
+              this.tags.push(value);
+            }
+          }
+        )
+      }else{
+        this.tags.push(value);
+      }
     }
 
     // Clear the input value
@@ -148,6 +160,7 @@ export class PostComponent implements OnInit {
     else{
       this.closeFriends = this.postForm.get('friendListStory').value;
     }
+    
     console.log(this.closeFriends);
     this.isHighlighted = this.postForm.value.highlight;
     console.log(this.isHighlighted);
